@@ -1,13 +1,62 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+  height: max-content;
+  }
+  #root{
+    min-height: 100%;
+    --primaryColor:#0b4b75;
+    --errorColor:#D43C37;
+    --infoColor:#00ABEC;
+    --procesingColor:#33BA75;
+    --succesColor:#008888;
+    --warningColor:#F4AD3D;
+  }
+  
+  .login-container{
+    background-color: rgba(255, 255, 255,1);
+    padding: 5%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+  .logo-auth{
+    width: 300px;
+    padding: 5%;
+  }
+  .logo-lauyout{
+    height: 100%;
+    max-height: 34px;
+    margin: 15px;
+  }
+  .ant-layout{
+    background-color: transparent !important;
+  }
+  .bg-pattern{
+    background-color: var(--primaryColor);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+  }
+  
+  .container{
+    padding: 20px;
+    background-color: whitesmoke;
+  }
+  .hidden{
+    display: none;
+  }
+  .block{
+    display: block;
+  }
+  .layout-right{
+    min-width: 250px i !important;
+  }
+  .logout-card{
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 450px;
+    min-width: 350px;
+    height: auto;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+  }
+  

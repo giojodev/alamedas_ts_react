@@ -1,19 +1,39 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import  {ReactDOM}  from 'react';
+import {createRoot} from 'react-dom/client'
 import App from './App';
+import './index.css';
+import 'antd/dist/antd.variable.css';
+import { ConfigProvider } from 'antd';
+import { authReducer } from './reducers';
+import { combineReducers,createStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const reducers=combineReducers({
+    auth:authReducer
+});
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const store=createStore(reducers);
+
+ConfigProvider.config({
+    theme:{
+        primaryColor:"#003658",
+        errorColor:"#D43c37",
+        infoColor:"#00ABEC",
+        processingColor:"#33BA75",
+        successColor:"#008866",
+        warningColor:"#F4AD3D"
+    }
+});
+
+const container= document.getElementById('root') as HTMLElement
+
+const root=createRoot(container);
+
+root.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>
+)
