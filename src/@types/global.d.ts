@@ -26,3 +26,12 @@ interface IModelLogin {
   interface IModelAuthorized{
       auth:boolean;
   }
+
+  interface IModelDataType{
+    id_condomino:int=0;
+    nombre_completo:string="";
+    nombre_inquilino:string="";
+    correo:string="";
+    telefono:string="";
+    activo:boolean=false;
+  }
