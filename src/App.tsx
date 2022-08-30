@@ -1,12 +1,9 @@
-import React from 'react'
 import './App.css'
 import {Routes} from "./routing/Routes";
-import axios,{Axios} from 'axios';
 
-const setUrl=async ()=>{
-    const {data} =await axios ("/env.json");
-    const {urlApiAlamedas}=data;
-    localStorage.setItem("urlAPIALAMEDAS",urlApiAlamedas);
+const setUrl = async ()=>{
+    const environment = require("./env.json");
+    localStorage.setItem("urlAPIALAMEDAS",environment.urlAPIALAMEDAS);
 }
 
 setUrl();
