@@ -39,6 +39,26 @@ const Sider=()=>{
             path:"/gastos",
             key:"gastos"
         }
+        ,
+        {
+            icon:<TeamOutlined/>,
+            title:"Gastos Caja Chica",
+            path:"/gastoscajachica",
+            key:"gastoscajachica"
+        },
+        {
+            icon:<TeamOutlined/>,
+            title:"Ingresos Caja Chica",
+            path:"/ingresoscajachica",
+            key:"ingresoscajachica"
+        }
+        ,
+        {
+            icon:<TeamOutlined/>,
+            title:"Reportes",
+            path:"/reportes",
+            key:"reportes"
+        }
     ];
 
     return(
