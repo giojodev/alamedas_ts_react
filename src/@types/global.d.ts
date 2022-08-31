@@ -28,11 +28,19 @@ interface IModelLogin {
       auth:boolean;
   }
 
-  interface IModelDataType{
-    id_condomino:int=0;
-    nombre_completo:string="";
-    nombre_inquilino:string="";
-    correo:string="";
-    telefono:string="";
-    activo:boolean=false;
+  interface IModelCondomino{
+    ID_CONDOMINO:int=0;
+    NOMBRE_COMPLETO:string="";
+    NOMBRE_INQUILINO:string="";
+    CORREO:string="";
+    TELEFONO:string="";
+    ACTIVO:boolean=false;
+  }
+
+  interface PropCondo{
+    showModal: boolean;
+    formData:IModelCondomino;
+    onChange:(event:React.MouseEvent) =>void;
+    isEditData:boolean;
+    onSave:(form:any)=>void;
   }
