@@ -29,12 +29,12 @@ interface IModelLogin {
   }
 
   interface IModelCondomino{
-    ID_CONDOMINO:int=0;
-    NOMBRE_COMPLETO:string="";
-    NOMBRE_INQUILINO:string="";
-    CORREO:string="";
-    TELEFONO:string="";
-    ACTIVO:boolean=false;
+    idCondomino:int=0;
+    nombreCompleto:string="";
+    nombreInquilino:string="";
+    correo:string="";
+    telefono:string="";
+    activo:boolean=false;
   }
 
   interface PropCondo{

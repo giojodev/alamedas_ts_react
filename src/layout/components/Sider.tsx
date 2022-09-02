@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { HomeOutlined,ContactsOutlined,RiseOutlined,FallOutlined,PieChartOutlined,FundProjectionScreenOutlined,FundViewOutlined } from "@ant-design/icons";
+import { HomeOutlined,ContactsOutlined,RiseOutlined,FallOutlined,PieChartOutlined,FundProjectionScreenOutlined,FundViewOutlined,SettingOutlined } from "@ant-design/icons";
 import { Layout,Menu } from "antd";
 import type { MenuProps } from 'antd';
 import logo from '../../assets/img/logo7.png';
@@ -23,13 +23,17 @@ function getItem(
 type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuProps['items'] = [
-    getItem('Inicio', 'inicio', <HomeOutlined />),
-    getItem('Condominos', 'condominos', <ContactsOutlined />),
+    getItem('Inicio', 'home', <HomeOutlined />),
+    getItem('Condominos', 'condominium', <ContactsOutlined />),
     getItem('Ingresos', 'ingresos', <RiseOutlined />),
     getItem('Gastos', 'gastos', <FallOutlined />),
     getItem('Gastos Caja Chica', 'gastoscajachica', <FundViewOutlined />),
     getItem('Ingresos Caja Chica', 'ingresoscajachica', <FundProjectionScreenOutlined />),
     getItem('Reportes', 'reportes', <PieChartOutlined />),
+    getItem('Configuración', 'configuracion', <SettingOutlined />, [
+        getItem('Tipos', 'g1', null, [getItem('Ingreso', 'ingreso'), getItem('Gastos', 'gasto')], 'group'),
+        getItem('Caja Chica', 'g2', null, [getItem('Tipo Ingreso', 'cingreso'), getItem('Tipo Gastos', 'gingreso')], 'group'),
+    ]),
 ];
 
 const Sider=()=>{

@@ -1,12 +1,11 @@
-import { createElement,useEffect,useState } from "react";
-import {Button,Col,Divider,Row,Table,Modal,Tag,Input} from 'antd';
+import React, {useEffect,useState } from "react";
+import {Button,Col,Divider,Row,Table,Modal,Input} from 'antd';
 import {CondominoService} from '../../services';
 import {CondominoModal} from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
-import { setUseProxies } from "immer";
 const Search=Input.Search;
 
-const CondominiumPage =()=>{
+const CondominiumPage = () =>{
 const [lstCondomino,setLstCondomino] = useState([] as Array<IModelCondomino>);
 const [lstFilter,setLstFilter] = useState([] as Array<IModelCondomino>);
 const [loading,setLoading]= useState(false);
@@ -28,20 +27,9 @@ const changeModal=()=>{
     setIsModalVisible(!isModalVisible);
 }
 
-// const StateRender=(text:string,record:IModelCondomino,index:number)=>{
-//     let state:string ="ND";
-// }
-
-const EditRender=(text:string,record:IModelCondomino,index:number)=>{
-    return(
-        <Button key={record.ID_CONDOMINO} icon={<EditOutlined/>} type="ghost" onClick={e=>{e.stopPropagation;editCondomino(record);}}>
-        </Button>
-    );
-}
-
-const editCondomino=(data:IModelCondomino) =>{
-    setIsEdit(true);
+const editCondomino = (data:IModelCondomino) =>{
     setCondomino(data);
+    setIsEdit(true);
     changeModal();
 }
 
@@ -96,34 +84,19 @@ const search=(event:any,)=>{
 }
 
 return (
-    <>
-    <Row gutter={[16,16]} justify="end" align="middle">
-        <Col>
-            <Search type="search" placeholder="Buscar" onChange={search}>
-            </Search>
-        </Col>
-        <Col>
-        <Button type="primary" onClick={newCondomino}>
-            Nuevo Condomino
-        </Button>
-        </Col>
-    </Row>
-    <Divider/>
-    <Row justify="center" align="middle">
-        <Col flex="auto">
-            <Table<IModelCondomino> rowKey="ID_CONDOMINO" dataSource={lstFilter.length>0 ? lstFilter : lstCondomino} size="small" loading={loading}>
-                <Table.Column<IModelCondomino> key="ID_CONDOMINO" title="Numero Casa" dataIndex="ID_CONDOMINO"/>
-                <Table.Column<IModelCondomino> key="NOMBRE_COMPLETO" title="Dueño" dataIndex="NOMBRE_COMPLETO"/>
-                <Table.Column<IModelCondomino> key="NOMBRE_INQUILINO" title="Residente" dataIndex="NOMBRE_INQUILINO"/>
-                <Table.Column<IModelCondomino> key="CORREO" title="Correo" dataIndex="CORREO"/>
-                <Table.Column<IModelCondomino> key="TELEFONO" title="Telefono" dataIndex="TELEFONO"/>
-                <Table.Column<IModelCondomino> key="ACTIVO" title="Activo" dataIndex="ACTIVO"/>
-                <Table.Column key="action" title="Acciones" dataIndex="ACCIONES" fixed="right" render={EditRender}/>
+    <React.Fragment>
+    <Table<IModelCondomino> rowKey="idCondomino" dataSource={lstFilter.length>0 ? lstFilter : lstCondomino} size="small" loading={loading}>
+                <Table.Column<IModelCondomino> key="idCondomino" title="Numero Casa" dataIndex="idCondomino"/>
+                <Table.Column<IModelCondomino> key="nombreCompleto" title="Dueño" dataIndex="nombreCompleto"/>
+                <Table.Column<IModelCondomino> key="nombreInquilino" title="Residente" dataIndex="nombreInquilino"/>
+                <Table.Column<IModelCondomino> key="correo" title="Correo" dataIndex="correo"/>
+                <Table.Column<IModelCondomino> key="telefono" title="Telefono" dataIndex="telefono"/>
+                <Table.Column<IModelCondomino> key="activo" title="Activo" dataIndex="activo"/>
+                <Table.Column key="idCondomino" title="Acciones" fixed="right" render={
+                    (row) =>  <Button key={row.idCondomino} icon={<EditOutlined/>} type="ghost" onClick={() => editCondomino(row)} />   
+                }/>
             </Table>
-        </Col>
-    </Row>
-    <CondominoModal showModal={isModalVisible} formData={condomino} onChange={changeModal} isEditData={isEdit} onSave={save}/>
-</>
+    </React.Fragment>
 )
 
 }
