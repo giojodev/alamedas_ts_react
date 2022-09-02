@@ -1,8 +1,8 @@
-import { Alert,Button,Divider,Form,Input,Row,Spin,Typography,Select } from "antd";
-import { useState } from "react";
+import { Alert,Button,Form,Input,Row,Spin,Select,Card} from "antd";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import logo from "../../../images/logo1.png";
+import logo from "../../../assets/img/logo7.png";
 import {AccountService} from "../../../services/index";
 import { InitSession } from "../../../actions";
 const{Option} = Select;
@@ -28,47 +28,50 @@ const Login = () => {
     }
 
     return (
-      <>
-        <Row justify="center" align="middle">
-          <img className="logo-auth" src={logo} alt="logo" />
-        </Row>
-        <div className="login-container">
+      <React.Fragment>
+        <Card
+          hoverable
+          style={{ width: 300 }}
+        >
           <Row justify="center">
-            <Typography.Title level={2}>
-              Alamedas de las Colinas
-            </Typography.Title>
-          </Row>
-          <Spin spinning={isLoading}>
-            <Form labelCol={{ span: 8 }} onFinish={onLogin}>
-              <Typography.Title level={4}>Usuario</Typography.Title>
-              <Form.Item
-                name="username"
-                rules={[
-                  { required: true, message: "Debe de ingresar su usuario" }
-                ]}
+            <Spin spinning={isLoading}>
+              <Row justify="center" align="middle">
+                <img className="logo-auth" src={logo} alt="logo" />
+              </Row>
+               <Form
+                name="basic"
+                layout="vertical"
+                initialValues={{ remember: true }}
+                onFinish={onLogin}
+                autoComplete="on"
               >
-                <Input placeholder="Usuario" name="" />
-              </Form.Item>
-              <Form.Item
-                name="password"
-                rules={[
-                  { required: true, message: "Debe de ingresar la contraseña" }
-                ]}
-              >
-                <Input placeholder="*****" name="" />
-              </Form.Item>
-              {alertMessage?.message && <Alert message={alertMessage?.message} type="error" />}
-              <Divider/>
-                <Row justify="center">
+                <Form.Item
+                  label="Usuario"
+                  name="username"
+                  rules={[{ required: true, message: 'Debe de ingresar su usuario!' }]}
+                >
+                  <Input />
+                </Form.Item>
+
+                <Form.Item
+                  label="Contraseña"
+                  name="password"
+                  rules={[{ required: true, message: 'Debe de ingresar la contraseña!' }]}
+                >
+                  <Input.Password />
+                </Form.Item>
+                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                   <Button type="primary" htmlType="submit">
                     Ingresar
                   </Button>
-                </Row>
-              
-            </Form>
-          </Spin>
-        </div>
-      </>
+                </Form.Item>
+                {alertMessage?.message && <Alert message={alertMessage?.message} type="error" showIcon />}
+              </Form>
+            
+            </Spin>
+          </Row>
+        </Card>
+      </React.Fragment>
     );
 
 }

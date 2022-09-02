@@ -2,7 +2,7 @@ import React from 'react';
 import  {ReactDOM}  from 'react';
 import {createRoot} from 'react-dom/client'
 import App from './App';
-import './index.css';
+import './assets/css/index.css';
 import 'antd/dist/antd.variable.css';
 import { ConfigProvider } from 'antd';
 import { authReducer } from './reducers';

@@ -6,12 +6,12 @@ const {Content}=Layout;
 
 const MasterLayout=()=>{
     return(
-        <Layout className="layout-main">
+        <Layout  style={{height:"100vh",minHeight:"460px"}}>
             <Sider/>
-            <Layout className="layout-right">
+            <Layout>
                 <Header/>
-                <Content className="container">
-                    <div className="site-layout-background">
+                <Content style={{ margin: '24px 16px 0' }}>
+                    <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                         <Outlet/>
                     </div>
                 </Content>
