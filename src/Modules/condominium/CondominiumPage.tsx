@@ -5,6 +5,7 @@ import {CondominoModal} from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
 const Search=Input.Search;
 
+
 const CondominiumPage = () =>{
 const [lstCondomino,setLstCondomino] = useState([] as Array<IModelCondomino>);
 const [lstFilter,setLstFilter] = useState([] as Array<IModelCondomino>);
@@ -85,17 +86,30 @@ const search=(event:any,)=>{
 
 return (
     <React.Fragment>
-    <Table<IModelCondomino> rowKey="idCondomino" dataSource={lstFilter.length>0 ? lstFilter : lstCondomino} size="small" loading={loading}>
-                <Table.Column<IModelCondomino> key="idCondomino" title="Numero Casa" dataIndex="idCondomino"/>
-                <Table.Column<IModelCondomino> key="nombreCompleto" title="Dueño" dataIndex="nombreCompleto"/>
-                <Table.Column<IModelCondomino> key="nombreInquilino" title="Residente" dataIndex="nombreInquilino"/>
-                <Table.Column<IModelCondomino> key="correo" title="Correo" dataIndex="correo"/>
-                <Table.Column<IModelCondomino> key="telefono" title="Telefono" dataIndex="telefono"/>
-                <Table.Column<IModelCondomino> key="activo" title="Activo" dataIndex="activo"/>
-                <Table.Column key="idCondomino" title="Acciones" fixed="right" render={
-                    (row) =>  <Button key={row.idCondomino} icon={<EditOutlined/>} type="ghost" onClick={() => editCondomino(row)} />   
-                }/>
-            </Table>
+        <Row gutter={[16,16]} justify="end" align="middle">
+            <Col>
+                <Search type="search" placeholder="Buscar" onChange={search}>
+                </Search>
+            </Col>
+            <Col>
+                <Button type="primary" onClick={newCondomino}>
+                    Nuevo Condomino
+                </Button>
+            </Col>
+        </Row>
+        <Divider/>
+        <Table<IModelCondomino> bordered rowKey="idCondomino" dataSource={lstFilter.length>0 ? lstFilter : lstCondomino} size="small" loading={loading}>
+            <Table.Column<IModelCondomino> key="idCondomino" title="Numero Casa" dataIndex="idCondomino"/>
+            <Table.Column<IModelCondomino> key="nombreCompleto" title="Dueño" dataIndex="nombreCompleto"/>
+            <Table.Column<IModelCondomino> key="nombreInquilino" title="Residente" dataIndex="nombreInquilino"/>
+            <Table.Column<IModelCondomino> key="correo" title="Correo" dataIndex="correo" />
+            <Table.Column<IModelCondomino> key="telefono" title="Telefono" dataIndex="telefono"/>
+            <Table.Column<IModelCondomino> key="activo" title="Activo" dataIndex="activo"/>
+            <Table.Column key="idCondomino" title="Acciones" fixed="right" render={
+                (row) =>  <Button key={row.idCondomino} icon={<EditOutlined/>} type="ghost" onClick={() => editCondomino(row)} />   
+             }/>
+        </Table>
+        <CondominoModal showModal={isModalVisible} formData={condomino} onChange={changeModal} isEditData={isEdit} onSave={save}/>
     </React.Fragment>
 )
 

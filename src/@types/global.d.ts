@@ -34,7 +34,7 @@ interface IModelLogin {
     nombreInquilino:string="";
     correo:string="";
     telefono:string="";
-    activo:boolean=false;
+    activo:Boolean=false;
   }
 
   interface PropCondo{
@@ -43,4 +43,8 @@ interface IModelLogin {
     onChange:(event:React.MouseEvent) =>void;
     isEditData:boolean;
     onSave:(form:any)=>void;
+  }
+
+  interface IModelBasedResul{
+    Message:string="";
   }

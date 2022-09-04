@@ -19,14 +19,25 @@ class CondominoService{
                 response=responsePost.data;
             })
             .catch(error=>{
-                console.log("condomino.service.tsx ~ line 13 ~ CondominoService ~ GetListCondomino ~ error",error);
+                console.log("condomino.service.tsx ~ line 9 ~ CondominoService ~ GetListCondomino ~ error",error);
             });
             return response;
         } 
         static NewCondomino = async(model:IModelCondomino)=>{
             const sessionData = SessionData() as IModelLoginRequest;
-            const {data} = await axios.post(urlBase + 'Alamedas/Catalog/NuevoCondomino',model);
-            return data;
+            let response:Array<IModelBasedResul>= [] as Array<IModelBasedResul>
+            await axios.post(urlBase + 'Alamedas/Transactions/InsertCondominum',model, {
+                headers: {
+                  'Authorization': `Bearer ${sessionData.token}` 
+                }
+            })
+            .then(responsePost=>{
+                response=responsePost.data;
+            })
+            .catch(error=>{
+                console.log("condomino.service.tsx ~ line 26  ~ CondominoService ~ NewCondomino ~ error",error);
+            });
+            return response;
         }
         static EditCondomino = async (model: IModelCondomino)=>{
             const {data} = await axios.post(urlBase + 'Alamedas/Catalog/ActualizarCondomino',model);
