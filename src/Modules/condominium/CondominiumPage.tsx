@@ -1,5 +1,5 @@
 import React, {useEffect,useState } from "react";
-import {Button,Col,Divider,Row,Table,Modal,Input} from 'antd';
+import {Button,Col,Divider,Row,Table,Modal,Input,Tag} from 'antd';
 import {CondominoService} from '../../services';
 import {CondominoModal} from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
@@ -19,9 +19,23 @@ useEffect(()=>{
 },[]);
 
 const fetchListCondomino = async()=>{
-    var result=await CondominoService.GetListCondomino();
-    setLstCondomino(result);
-    setLoading(false);
+
+    var result= CondominoService.GetListCondomino();
+    
+    result.then((data:any)=>{
+        setLstCondomino(data);
+    })
+    .catch((error:any)=>{
+
+        Modal.error({
+            icon:<CloseCircleOutlined/>,
+            type:"error",
+            title:"Error",
+            content:error.response.data
+    
+        });
+    }).finally(()=>{setLoading(false);});
+  
 }
 
 const changeModal=()=>{
@@ -98,15 +112,15 @@ return (
             </Col>
         </Row>
         <Divider/>
-        <Table<IModelCondomino> bordered rowKey="idCondomino" dataSource={lstFilter.length>0 ? lstFilter : lstCondomino} size="small" loading={loading}>
+        <Table<IModelCondomino> scroll={{ x: 500 }} bordered rowKey="idCondomino" dataSource={lstFilter.length>0 ? lstFilter : lstCondomino} size="small" loading={loading}>
             <Table.Column<IModelCondomino> key="idCondomino" title="Numero Casa" dataIndex="idCondomino"/>
             <Table.Column<IModelCondomino> key="nombreCompleto" title="Dueño" dataIndex="nombreCompleto"/>
             <Table.Column<IModelCondomino> key="nombreInquilino" title="Residente" dataIndex="nombreInquilino"/>
             <Table.Column<IModelCondomino> key="correo" title="Correo" dataIndex="correo" />
             <Table.Column<IModelCondomino> key="telefono" title="Telefono" dataIndex="telefono"/>
-            <Table.Column<IModelCondomino> key="activo" title="Activo" dataIndex="activo"/>
+            <Table.Column<IModelCondomino> key="activo" title="Estado" dataIndex="activo" render={(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Activo"):String("Inactivo")}</Tag> } />
             <Table.Column key="idCondomino" title="Acciones" fixed="right" render={
-                (row) =>  <Button key={row.idCondomino} icon={<EditOutlined/>} type="ghost" onClick={() => editCondomino(row)} />   
+                (row) =>  <Button key={row.id} icon={<EditOutlined/>} type="ghost" onClick={() => editCondomino(row)} />   
              }/>
         </Table>
         <CondominoModal showModal={isModalVisible} formData={condomino} onChange={changeModal} isEditData={isEdit} onSave={save}/>

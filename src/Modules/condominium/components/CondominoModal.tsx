@@ -5,12 +5,7 @@ import { SaveOutlined,CloseCircleOutlined } from '@ant-design/icons';
 const CondominoModal=({showModal,formData,onChange,isEditData,onSave}: PropCondo)=>{
     const spanCol:number=12;
     const [currentValueRadio,setcurrentValueRadio]= useState(formData.activo);
-
-    const onChangec = (value: number) => {
-        console.log('changed', value);
-    };
-
-
+    const [currentValueid,setcurrentValueid]= useState(formData.IdCondomino);
     return (
         
         <>
@@ -22,8 +17,12 @@ const CondominoModal=({showModal,formData,onChange,isEditData,onSave}: PropCondo
                             <Form.Item 
                                 label="Numero Casa" 
                                 name="idCondomino" 
+                                rules={[{required:true,message:"Ingrese el numero de casa"}]}
+                                
                             >
-                                <InputNumber min={1} defaultValue={0} onChange={onChangec} />
+                                <InputNumber 
+                                    min={1} disabled={isEditData}
+                                />
                             </Form.Item>
                         </Col>
                         <Col span={spanCol}>
@@ -70,11 +69,11 @@ const CondominoModal=({showModal,formData,onChange,isEditData,onSave}: PropCondo
                             >
                                 <Radio.Group 
                                     buttonStyle='solid'
-                                    onChange={(e) => {setcurrentValueRadio(e.target.value); }}
+                                    onChange={(e) => {setcurrentValueRadio(Boolean(e.target.value)); }}
                                     value={currentValueRadio}
                                 >
-                                    <Radio.Button value="true">Activo</Radio.Button>
-                                    <Radio.Button value="false">Inactivo</Radio.Button>
+                                    <Radio.Button value={true}>Activo</Radio.Button>
+                                    <Radio.Button value={false}>Inactivo</Radio.Button>
                                 </Radio.Group>
                             </Form.Item>
                         </Col>

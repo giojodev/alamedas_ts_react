@@ -29,7 +29,7 @@ interface IModelLogin {
   }
 
   interface IModelCondomino{
-    idCondomino:int=0;
+    IdCondomino:int=0;
     nombreCompleto:string="";
     nombreInquilino:string="";
     correo:string="";
