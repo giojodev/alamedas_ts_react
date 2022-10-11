@@ -8,12 +8,15 @@ const GetBaseUrl=()=>{
 const urlBase=GetBaseUrl();
 class TipoGastoCajaChicaService{
     
-    static async GetListTipoGastoCajaChica(){
+    static async GetListTipoGastoCajaChica( idtipogasto ){
         return new Promise((resolve,reject)=>{
             const sessionData = SessionData() as IModelLoginRequest;
-            axios.get(urlBase + 'Alamedas/Catalog/GetTipoGastoCajaChica',{
+            axios.get(urlBase + 'Alamedas/Catalog/TgccList',{
                 headers:{
                     'Authorization': `Bearer ${sessionData.token}` 
+                },
+                params:{
+                    IdTGCC:idtipogasto
                 }
             }).then(response=>{
                 resolve(response.data);
