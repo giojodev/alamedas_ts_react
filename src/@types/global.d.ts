@@ -45,6 +45,14 @@ interface IModelLogin {
     onSave:(form:any)=>void;
   }
 
+  interface PropTipoGastoCajaChica{
+    showModal: boolean;
+    formData:IModelCondomino;
+    onChange:(event:React.MouseEvent) =>void;
+    isEditData:boolean;
+    onSave:(form:any)=>void;
+  }
+
   interface IModelBasedResul{
     Message:string="";
   }

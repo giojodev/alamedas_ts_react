@@ -8,7 +8,7 @@ const GetBaseUrl=()=>{
 const urlBase=GetBaseUrl();
 class TipoGastoCajaChicaService{
     
-    static async GetListTipoGastoCajaChica( idtipogasto ){
+    static async GetListTipoGastoCajaChica( idtipogasto:any ){
         return new Promise((resolve,reject)=>{
             const sessionData = SessionData() as IModelLoginRequest;
             axios.get(urlBase + 'Alamedas/Catalog/TgccList',{
