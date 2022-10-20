@@ -7,7 +7,7 @@ const GetBaseUrl=()=>{
 
 const urlBase=GetBaseUrl();
 class TipoGastoCajaChicaService{
-    
+    // static async GetListTipoGastoCajaChica( idtipogasto:any ){
     static async GetListTipoGastoCajaChica( idtipogasto:any ){
         return new Promise((resolve,reject)=>{
             const sessionData = SessionData() as IModelLoginRequest;
@@ -27,6 +27,42 @@ class TipoGastoCajaChicaService{
         })
     }
 
+    static NewTipoGastoCajaChica = async(model:IModelTipoGastoCajaChica)=>{
+        return new Promise((resolve,reject)=>{
+            const sessionData = SessionData() as IModelLoginRequest;
+            let response:Array<IModelBasedResul>= [] as Array <IModelBasedResul>;
+            axios.post(urlBase + 'Alamedas/Transactions/InsertTGCC',model,{
+                headers: {
+                    'Authorization': `Bearer ${sessionData.token}` 
+                    } 
+            })
+            .then(responsePost=>{
+                resolve(responsePost.data);
+            })
+            .catch(error=>{
+                reject(error);
+                console.log("tipocajachica.service.tsx ~ line 44  ~ TipoGastoCajaChicaService ~ NewTipoGastoCajaChica ~ error:",error)
+            })
+        });
+    }
+    static EditTipoGastoCajaChica = async(model:IModelTipoGastoCajaChica)=>{
+        return new Promise((resolve,reject)=>{
+            const sessionData= SessionData() as IModelLoginRequest;
+            let response:Array<IModelBasedResul> = [] as Array<IModelBasedResul>;
+            axios.put(urlBase+ 'Alamedas/Transactions/UpdateTGCC',model,{
+                headers: {
+                    'Authorization': `Bearer ${sessionData.token}` 
+                    } 
+            })
+            .then(responsePost=>{
+                resolve(responsePost.data);
+            })
+            .catch(error=>{
+                reject(error);
+                console.log("tipocajachica.service.tsx ~ line 62  ~ TipoGastoCajaChicaService ~ EditTipoGastoCajaChica ~ error:",error)
+            })
+        })
+    }
 }
 
 export {TipoGastoCajaChicaService};
