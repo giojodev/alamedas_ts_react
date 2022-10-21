@@ -53,7 +53,7 @@ interface IModelLogin {
 
   interface PropTipoGastoCajaChica{
     showModal: boolean;
-    formData:IModelCondomino;
+    formData:IModelTipoGastoCajaChica;
     onChange:(event:React.MouseEvent) =>void;
     isEditData:boolean;
     onSave:(form:any)=>void;
