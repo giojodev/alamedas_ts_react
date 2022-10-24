@@ -28,11 +28,37 @@ interface IModelLogin {
       auth:boolean;
   }
 
-  interface IModelDataType{
-    id_condomino:int=0;
-    nombre_completo:string="";
-    nombre_inquilino:string="";
+  interface IModelCondomino{
+    IdCondomino:int=0;
+    nombreCompleto:string="";
+    nombreInquilino:string="";
     correo:string="";
     telefono:string="";
-    activo:boolean=false;
+    activo:Boolean=false;
+  }
+
+  interface IModelTipoGastoCajaChica{
+    idGastoCajaChica:int = 0;
+    nombreGastoCajachica:string = "";
+    activo:boolean = false;
+  }
+
+  interface PropCondo{
+    showModal: boolean;
+    formData:IModelCondomino;
+    onChange:(event:React.MouseEvent) =>void;
+    isEditData:boolean;
+    onSave:(form:any)=>void;
+  }
+
+  interface PropTipoGastoCajaChica{
+    showModal: boolean;
+    formData:IModelTipoGastoCajaChica;
+    onChange:(event:React.MouseEvent) =>void;
+    isEditData:boolean;
+    onSave:(form:any)=>void;
+  }
+
+  interface IModelBasedResul{
+    Message:string="";
   }

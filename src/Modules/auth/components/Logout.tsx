@@ -1,7 +1,7 @@
 import { SafetyCertificateFilled } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import { Button,Result } from "antd";
-import { LogoutCSS } from "../../../css/siteCss";
+import { LogoutCSS } from "../../../assets/css/siteCss";
 
 const Logout=()=>{
     return (
