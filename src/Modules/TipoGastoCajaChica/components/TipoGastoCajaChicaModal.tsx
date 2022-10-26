@@ -24,7 +24,7 @@ const TipoGastoCajaChicaModal =({showModal,formData,onChange,isEditData,onSave}:
                             <Form.Item
                               label= "Nombre de Tipo de Gasto Caja Chica"
                               name="nombreGastoCajachica"
-                              rules={[{required:true,message:"Ingrese el nombre del dueño"}]}
+                              rules={[{required:true,message:"Ingrese el nombre del gasto"}]}
                             >
                                 <Input/>
                             </Form.Item>
