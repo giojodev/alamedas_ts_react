@@ -51,7 +51,6 @@ const   TipoGastoCajaChicaPage = ()=> {
         var tipoGastoCajaChica:IModelTipoGastoCajaChica={} as IModelTipoGastoCajaChica;
         setTipoGastoCajaChica(tipoGastoCajaChica);
         setIsEdit(false);
-        setIsEdit(false);
         changeModal();
     }
     const save=(form:IModelTipoGastoCajaChica)=>{
