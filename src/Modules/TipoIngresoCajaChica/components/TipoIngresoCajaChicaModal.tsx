@@ -15,7 +15,7 @@ const TipoIngresoCajaChicaModal =({showModal,formData,onChange,isEditData,onSave
                             <Col span={spanCol}>
                                 <Form.Item
                                     label="Id Ingreso Caja Chica"
-                                    name="idIngresoaCajaChica"
+                                    name="idTipoIngresoaCajaChica"
                                     rules={[{required:true,message:"Ingrese un numero de id"}]}
                                 >
                                     <Input/>
@@ -24,7 +24,7 @@ const TipoIngresoCajaChicaModal =({showModal,formData,onChange,isEditData,onSave
                             <Col span={spanCol}>
                                 <Form.Item
                                 label="Nombre de Tipo de Ingreso Caja Chica"
-                                name="nombreIngresoCajaChica"
+                                name="nombreTipoIngresoCajaChica"
                                 rules={[{required:true,message:"Ingrese el nombre del ingreso"}]}
                                 >
                                     <Input/>
