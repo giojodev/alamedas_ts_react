@@ -90,7 +90,28 @@ const TipoIngresoCajaChicaPage = () =>{
     }
     
     return (
-        <></>
+        <>
+        <React.Fragment>
+            <Row gutter={[16,16]} justify="end" align='middle'>
+                <Col>
+                <Search type='search' placeholder='Buscar' onChange={search}></Search>
+                </Col>
+                <Col>
+                <Button type='primary' onClick={newTipoIngresoCajaChica}>Nuevo Tipo Ingreso Caja Chica</Button>
+                </Col>
+            </Row>
+            <Divider/>
+            <Table<IModelTipoIngresoCajaChica> scroll={{x:500}} bordered rowKey="idTipoIngresoaCajaChica" dataSource={lstFilter.length>0 ? lstFilter : lstTipoIngresoCajaChica} size="small" loading={loading}>
+                <Table.Column<IModelTipoIngresoCajaChica> key="idTipoIngresoaCajaChica" title="Id Tipo Ingreso CC" dataIndex="idTipoGastoCajaChica"/>
+                <Table.Column<IModelTipoIngresoCajaChica> key="nombreTipoIngresoCajaChica" title="Nombre Tipo Ingreso CC" dataIndex="nombreTipoIngresoCajaChica"/>
+                <Table.Column<IModelTipoGastoCajaChica> key="activo" title="Estado" dataIndex="activo"render={(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Activo"):String("Inactivo")}</Tag> } />
+                <Table.Column key="idTipoIngresoaCajaChica" title="Acciones" fixed='right' render={
+                    (row)=> <Button key={row.id} icon={<EditOutlined/>} type='ghost' onClick={()=>editTipoIngresoCajaChica(row)}/>
+                }/>
+            </Table>
+            <TipoIngresoCajaChicaModal showModal={isModalVisible} formData={tipoIngresoCajaChica} onChange={changeModal} isEditData={isEdit} onSave={save}/>
+        </React.Fragment>
+        </>
     );
 }
 
