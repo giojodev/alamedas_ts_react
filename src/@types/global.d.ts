@@ -38,13 +38,13 @@ interface IModelLogin {
   }
 
   interface IModelTipoGastoCajaChica{
-    idGastoCajaChica:int = 0;
-    nombreGastoCajachica:string = "";
+    idTipoGastoCajaChica:int = 0;
+    nombreTipoGastoCajachica:string = "";
     activo:boolean = false;
   }
   interface IModelTipoIngresoCajaChica{
-    idIngresoaCajaChica:int = 0;
-    nombreIngresoCajaChica:string = "";
+    idTipoIngresoaCajaChica:int = 0;
+    nombreTipoIngresoCajaChica:string = "";
     activo:boolean = false;
   }
 
