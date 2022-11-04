@@ -70,14 +70,30 @@ interface IModelLogin {
     isEditData:boolean;
     onSave:(form:any)=>void;
   }
+  interface IModelTipoGasto{
+    id_ingreso:int = 0;
+    nombre_ingreso:string = "";
+    activo:boolean = false;
+  }
+  interface IModelTiPoIngreso{
+    id_gasto:int = 0;
+    nombre_gasto:string = "";
+    activo:boolean = false;
+  }
   interface PropTipoIngreso{
     showModal: boolean;
-    formData:IModelTipoIngresoCajaChica;
+    formData:IModelTiPoIngreso;
     onChange:(event:React.MouseEvent) =>void;
     isEditData:boolean;
     onSave:(form:any)=>void;
   }
-
+  interface PropTipoGasto{
+    showModal: boolean;
+    formData:IModelTipoGasto;
+    onChange:(event:React.MouseEvent) =>void;
+    isEditData:boolean;
+    onSave:(form:any)=>void;
+  }
   interface IModelBasedResul{
     Message:string="";
   }
