@@ -70,6 +70,13 @@ interface IModelLogin {
     isEditData:boolean;
     onSave:(form:any)=>void;
   }
+  interface PropTipoIngreso{
+    showModal: boolean;
+    formData:IModelTipoIngresoCajaChica;
+    onChange:(event:React.MouseEvent) =>void;
+    isEditData:boolean;
+    onSave:(form:any)=>void;
+  }
 
   interface IModelBasedResul{
     Message:string="";
