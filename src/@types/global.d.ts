@@ -70,12 +70,12 @@ interface IModelLogin {
     isEditData:boolean;
     onSave:(form:any)=>void;
   }
-  interface IModelTipoGasto{
+  interface IModelTiPoIngreso{
     id_ingreso:int = 0;
     nombre_ingreso:string = "";
     activo:boolean = false;
   }
-  interface IModelTiPoIngreso{
+  interface IModelTipoGasto{
     id_gasto:int = 0;
     nombre_gasto:string = "";
     activo:boolean = false;
