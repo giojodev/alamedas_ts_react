@@ -27,12 +27,41 @@ class TipoIngresoService{
         })
     }
 
-    static NewTipoIngreso = async(model:IModelTiPoIngreso)=>{
+    static NewTipoIngreso = async(model:IModelTipoIngreso)=>{
         return new Promise((resolve,reject)=>{
             const sessionData= SessionData() as IModelLoginRequest;
-            
+            axios.post(urlBase + "Alamedas/Transactions/InsertTypeIncome",model,{
+                headers: {
+                    'Authorization': `Bearer ${sessionData.token}` 
+                    } 
+            })
+            .then(responsePost=>{
+                resolve(responsePost.data);
+            })
+            .catch(error=>{
+                reject(error);
+                console.log("tipoingreso.service.tsx ~ line 62  ~ TipoIngresoService ~ NewTipoIngreso ~ error:",error)
+            })
+        })
+    }
+    static EditTipoIngreso = async(model:IModelTipoIngreso)=>{
+        return new Promise((resolve,reject)=>{
+            const sessionData=SessionData() as IModelLoginRequest;
+            axios.put(urlBase+"Alamedas/Transactions/UpdateIncomeType",model,{
+                headers: {
+                    'Authorization': `Bearer ${sessionData.token}` 
+                    } 
+            })
+            .then(responsePost=>{
+                resolve(responsePost.data);
+            })
+            .catch(error=>{
+                reject(error);
+                console.log("tipoingreso.service.tsx ~ line 62  ~ TipoIngresoService ~ EditTipoGIngreso ~ error:",error)
+            })
         })
     }
 }
+
 
 export {TipoIngresoService}

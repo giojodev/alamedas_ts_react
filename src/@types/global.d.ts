@@ -47,6 +47,11 @@ interface IModelLogin {
     nombreTipoIngresoCajaChica:string = "";
     activo:boolean = false;
   }
+  interface IModelTipoIngreso{
+    idIncome:int= 0,
+  nombreIngreso:string="",
+  active:boolean= true
+  }
 
   interface PropCondo{
     showModal: boolean;
