@@ -48,7 +48,7 @@ interface IModelLogin {
     activo:boolean = false;
   }
   interface IModelTipoIngreso{
-    idIncome:int= 0,
+    idIngreso:int= 0,
     nombreIngreso:string="",
     activo:boolean= true
   }

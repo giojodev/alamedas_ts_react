@@ -55,7 +55,7 @@ const TipoIngresoCajaChicaPage = () =>{
             icon:<LoadingOutlined/>,
             title:"Guardando...",
             centered:true,
-            content:"Se esta guardando el tio de ingreso caja chica"
+            content:"Se esta guardando el tipo de ingreso caja chica"
         });
 
         var result=isEdit? TipoIngresoCajaChicaService.EditTipoIngresoCajaChica(form) : TipoIngresoCajaChicaService.NewTipoIngresoCajaChica(form);
