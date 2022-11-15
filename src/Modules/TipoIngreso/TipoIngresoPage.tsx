@@ -102,10 +102,15 @@ const TipoIngresoPage = () =>{
             </Row>
             <Divider/>
             <Table<IModelTipoIngreso> scroll={{x:500}} bordered rowKey="idIngreso" dataSource={lstFilter.length>0 ?lstFilter:lstTipoIngreso} size="small" loading={loading}>
-                
+                <Table.Column<IModelTipoIngreso> key="idIngreso" title="Id Ingreso" dataIndex={"idIngreso"}/>
+                <Table.Column<IModelTipoIngreso> key="nombreIngreso" title="Nombre Ingreso" dataIndex={"nombreIngreso"}/>
+                <Table.Column<IModelTipoIngreso> key="activo" title="Estado" dataIndex="activo"render={(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Activo"):String("Inactivo")}</Tag> } />
+                <Table.Column key="idIngreso" title="Acciones" fixed='right' render={
+                    (row)=> <Button key={row.id} icon={<EditOutlined/>} type='ghost' onClick={()=>editTipoIgreso(row)}/>
+                }/>
             </Table>
         </React.Fragment>
-            </>
+        </>
     )
 }
 
