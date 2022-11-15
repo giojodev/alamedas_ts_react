@@ -49,8 +49,13 @@ interface IModelLogin {
   }
   interface IModelTipoIngreso{
     idIncome:int= 0,
-  nombreIngreso:string="",
-  active:boolean= true
+    nombreIngreso:string="",
+    activo:boolean= true
+  }
+  interface IModelTipoGasto{
+    idGasto:int= 0,
+    nombreGasto:string="",
+    activo:boolean= true
   }
 
   interface PropCondo{
@@ -75,16 +80,16 @@ interface IModelLogin {
     isEditData:boolean;
     onSave:(form:any)=>void;
   }
-  interface IModelTiPoIngreso{
-    id_ingreso:int = 0;
-    nombre_ingreso:string = "";
-    activo:boolean = false;
-  }
-  interface IModelTipoGasto{
-    id_gasto:int = 0;
-    nombre_gasto:string = "";
-    activo:boolean = false;
-  }
+  // interface IModelTiPoIngreso{
+  //   id_ingreso:int = 0;
+  //   nombre_ingreso:string = "";
+  //   activo:boolean = false;
+  // }
+  // interface IModelTipoGasto{
+  //   id_gasto:int = 0;
+  //   nombre_gasto:string = "";
+  //   activo:boolean = false;
+  // }
   interface PropTipoIngreso{
     showModal: boolean;
     formData:IModelTiPoIngreso;
