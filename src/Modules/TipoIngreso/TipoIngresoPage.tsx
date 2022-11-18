@@ -5,7 +5,6 @@ import { TipoIngresoModal } from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
 import { useForm } from 'antd/es/form/Form';
 import { is } from 'immer/dist/internal';
-import { TipoIngresoCajaChicaModal } from '../TipoIngresoCajaChica/components';
 
 const Search = Input.Search;
 const TipoIngresoPage = () =>{
@@ -110,7 +109,7 @@ const TipoIngresoPage = () =>{
                     (row)=> <Button key={row.id} icon={<EditOutlined/>} type='ghost' onClick={()=>editTipoIgreso(row)}/>
                 }/>
             </Table>
-            <TipoIngresoCajaChicaModal showModal={isModalVisible} formData={tipoIngreso} isEditData={isEdit} onChange={changeModal} onSave={save}/>
+            <TipoIngresoModal showModal={isModalVisible} formData={tipoIngreso} isEditData={isEdit} onChange={changeModal} onSave={save}/>
         </React.Fragment>
         </>
     )
