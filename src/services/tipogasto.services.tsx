@@ -7,7 +7,7 @@ const GetBaseUrl=()=>{
 
 const urlBase=GetBaseUrl();
 
-class TipoIGastoService{
+class TipoGastoService{
     static async GetListTipoGasto(idtipogasto:any){
         return new Promise((resolve,reject)=>{
             const sessionData= SessionData() as IModelLoginRequest;
@@ -46,4 +46,4 @@ class TipoIGastoService{
     }
 }
 
-export {TipoIGastoService};
+export {TipoGastoService};
