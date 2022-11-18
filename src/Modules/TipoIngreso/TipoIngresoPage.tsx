@@ -109,6 +109,7 @@ const TipoIngresoPage = () =>{
                     (row)=> <Button key={row.id} icon={<EditOutlined/>} type='ghost' onClick={()=>editTipoIgreso(row)}/>
                 }/>
             </Table>
+            <TipoIngresoModal showModal={isModalVisible} formData={tipoIngreso} isEditData={isEdit} onChange={changeModal} onSave={save}/>
         </React.Fragment>
         </>
     )
