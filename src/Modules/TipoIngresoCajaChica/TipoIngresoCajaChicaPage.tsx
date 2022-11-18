@@ -115,4 +115,4 @@ const TipoIngresoCajaChicaPage = () =>{
     );
 }
 
-export {TipoIngresoCajaChicaPage}
+export {TipoIngresoCajaChicaPage};

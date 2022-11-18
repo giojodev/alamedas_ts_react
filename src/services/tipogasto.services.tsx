@@ -44,6 +44,9 @@ class TipoGastoService{
             })
         })
     }
+    static EditTipoGasto=async(model:IModelTipoGasto)=>{
+        
+    }
 }
 
 export {TipoGastoService};
