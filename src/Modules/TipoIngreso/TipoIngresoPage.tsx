@@ -4,7 +4,6 @@ import { TipoIngresoService } from '../../services/tipoingreso.services';
 import { TipoIngresoModal } from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
 import { useForm } from 'antd/es/form/Form';
-import { is } from 'immer/dist/internal';
 
 const Search = Input.Search;
 const TipoIngresoPage = () =>{
