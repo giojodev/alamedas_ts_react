@@ -5,7 +5,6 @@ import {CondominoModal} from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
 const Search=Input.Search;
 
-
 const CondominiumPage = () =>{
 const [lstCondomino,setLstCondomino] = useState([] as Array<IModelCondomino>);
 const [lstFilter,setLstFilter] = useState([] as Array<IModelCondomino>);
@@ -26,7 +25,6 @@ const fetchListCondomino = async()=>{
         setLstCondomino(data);
     })
     .catch((error:any)=>{
-
         Modal.error({
             icon:<CloseCircleOutlined/>,
             type:"error",
@@ -61,7 +59,7 @@ const save=(form: IModelCondomino)=>{
         title:"Guardando...",
         centered:true,
         content:"Se esta guardando condomino",
-
+        okButtonProps:{disabled:true}
     });
 
     var result=isEdit? CondominoService.EditCondomino(form) : CondominoService.NewCondomino(form);
@@ -71,7 +69,8 @@ const save=(form: IModelCondomino)=>{
             icon:<SaveOutlined/>,
             title:"Guardado",
             content:data,
-            onOk:changeModal
+            onOk:changeModal,
+            okButtonProps:{disabled:false}
         });
         fetchListCondomino();
     }).catch((error:any)=>{
@@ -79,7 +78,8 @@ const save=(form: IModelCondomino)=>{
             icon:<CloseCircleOutlined/>,
             type:"error",
             title:"Error",
-            content:error.response.data
+            content:error.response.data,
+            okButtonProps:{disabled:false}
         });
     });
 
@@ -118,7 +118,7 @@ return (
             <Table.Column<IModelCondomino> key="nombreInquilino" title="Residente" dataIndex="nombreInquilino"/>
             <Table.Column<IModelCondomino> key="correo" title="Correo" dataIndex="correo" />
             <Table.Column<IModelCondomino> key="telefono" title="Telefono" dataIndex="telefono"/>
-            <Table.Column<IModelCondomino> key="activo" title="Estado" dataIndex="activo" render={(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Activo"):String("Inactivo")}</Tag> } />
+            <Table.Column<IModelCondomino> key="activo" title="Estado" dataIndex="activo" render={(text) => <Tag color={text?"green":"volcano"} >{text?String("Activo"):String("Inactivo")}</Tag> } />
             <Table.Column key="idCondomino" title="Acciones" fixed="right" render={
                 (row) =>  <Button key={row.id} icon={<EditOutlined/>} type="ghost" onClick={() => editCondomino(row)} />   
              }/>

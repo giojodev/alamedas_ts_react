@@ -20,10 +20,10 @@
   background: #fff;
 }
 
-
 body {
   height: max-content;
   }
+
   #root{
     min-height: 100%;
     --primaryColor:#0b4b75;
@@ -32,6 +32,10 @@ body {
     --procesingColor:#33BA75;
     --succesColor:#008888;
     --warningColor:#F4AD3D;
+  }
+
+  .ant-table-layout-fixed table {
+    table-layout: auto !important;
   }
   
   .login-container{
