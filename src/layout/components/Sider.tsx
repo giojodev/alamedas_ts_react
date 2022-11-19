@@ -53,8 +53,8 @@ const Sider=()=>{
             <Menu
                 theme="dark"
                 onClick={onClick}
-                defaultSelectedKeys={['1']}
-                defaultOpenKeys={['inicio']}
+                defaultSelectedKeys={['home']}
+                defaultOpenKeys={['home']}
                 mode="inline"
                 items={items}
             />
