@@ -1,3 +1,5 @@
+import internal from "stream";
+
 interface IModelLogin {
     username: string='' ;
     password: string='' ;
@@ -42,12 +44,21 @@ interface IModelLogin {
     nombreTipoGastoCajachica:string = "";
     activo:boolean = false;
   }
+  interface IModelGasto{
+    consecutivo:int=0;
+    usuario:int=1;
+    gasto:int=0;
+    fecha:Date;
+    concepto:string="";
+    mes:int=1;
+    anio:int=2022;
+  }
   interface IModelTipoIngresoCajaChica{
     idTipoIngresoaCajaChica:int = 0;
     nombreTipoIngresoCajaChica:string = "";
     activo:boolean = false;
   }
-  interface IModelTipoIngreso{
+  interface IModelTipoIngreso{  
     idIngreso:int= 0,
     nombreIngreso:string="",
     activo:boolean= true
