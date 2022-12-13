@@ -115,6 +115,13 @@ interface IModelLogin {
     isEditData:boolean;
     onSave:(form:any)=>void;
   }
+  interface PropGasto{
+    showModal: boolean;
+    formData:IModelGasto;
+    onChange:(event:React.MouseEvent) =>void;
+    isEditData:boolean;
+    onSave:(form:any)=>void;
+  }
   interface IModelBasedResul{
     Message:string="";
   }
