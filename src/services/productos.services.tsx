@@ -1,34 +1,29 @@
 import axios from 'axios';
 import { SessionData } from '../helpers';
 
-const GetBaseUrl=()=>{
-    return localStorage.getItem('urlAPIALAMEDAS');
-}
-
+const GetBaseUrl=()=>{return localStorage.getItem('urlAPIALAMEDAS');}
 const urlBase=GetBaseUrl();
 
-class GastoService{
-    static async GetListGasto(idGasto:any){
+class ProductosService{
+
+    //gatos
+    static async GetListGasto(){
         return new Promise((resolve,reject)=>{
             const sessionData=SessionData() as IModelLoginRequest;
-            axios.get(urlBase+"Alamedas/Catalog/GetExpense",{
+            axios.get(urlBase+"Alamedas/Catalog/ProdExpenseList",{
                 headers:{
                     'Authorization': `Bearer ${sessionData.token}` 
-                },
-                params:{
-                    Id:idGasto
                 }
             }).then(response=>{
                 resolve(response.data);
             }).catch(error=>{
                 reject(error);
-                console.log("GastosService.service.tsx ¬ line 26 ¬ GetListGasto ¬ error",error);
+                console.log("ProductosService.service.tsx ¬ line 9 ¬ GetListGasto ¬ error",error);
             })
         })
-        
     }
 
-    static NewGasto = async(model:IModelGasto)=>{
+    static NewGasto = async(model:IModelProductoGasto)=>{
         return new Promise((resolve,reject)=>{
             const sessionData=SessionData() as IModelLoginRequest;
             axios.post(urlBase+"Alamedas/Transactions/InsertExpense",model,{
@@ -46,21 +41,21 @@ class GastoService{
         })
     }
 
-    static EditGasto = async(model:IModelGasto)=>{
+    //ingresos
+    static async GetListIngreso(){
         return new Promise((resolve,reject)=>{
-            const sessionData= SessionData() as IModelLoginRequest;
-            axios.put(urlBase+"Alamedas/Transactions/EditExpense",model,{
-                headers: {
+            const sessionData=SessionData() as IModelLoginRequest;
+            axios.get(urlBase+"Alamedas/Catalog/ProdExpenseList",{
+                headers:{
                     'Authorization': `Bearer ${sessionData.token}` 
-                    } 
-            })
-            .then(responsePut=>{
-                resolve(responsePut.data);
-            })
-            .catch(error=>{
+                }
+            }).then(response=>{
+                resolve(response.data);
+            }).catch(error=>{
                 reject(error);
-                console.log("GastosService ¬ line 45 ¬ EditGasto ¬ error",error);
+                console.log("ProductosService.service.tsx ¬ line 9 ¬ GetListGasto ¬ error",error);
             })
         })
     }
+
 }

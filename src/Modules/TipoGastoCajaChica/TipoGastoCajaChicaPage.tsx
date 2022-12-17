@@ -3,9 +3,9 @@ import { Button,Col,Divider,Row,Table,Modal,Input,Tag } from 'antd';
 import { TipoGastoCajaChicaService } from '../../services';
 import {TipoGastoCajaChicaModal} from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
+import { ColumnsType } from 'antd/es/table';
 
 const Search= Input.Search;
-
 
 const   TipoGastoCajaChicaPage = ()=> {
 
@@ -48,8 +48,7 @@ const   TipoGastoCajaChicaPage = ()=> {
     }
 
     const newTipoGastoCajaChica = ()=>{
-        var tipoGastoCajaChica:IModelTipoGastoCajaChica={} as IModelTipoGastoCajaChica;
-        setTipoGastoCajaChica(tipoGastoCajaChica);
+        setTipoGastoCajaChica({}as IModelTipoGastoCajaChica);
         setIsEdit(false);
         changeModal();
     }
@@ -93,6 +92,28 @@ const   TipoGastoCajaChicaPage = ()=> {
         setLstFilter(filterTable);
         setLoading(false);
     }
+
+    const columns: ColumnsType<IModelTipoGastoCajaChica> = [
+        {
+            title:'Id',
+            dataIndex:'idGastoCajaChica'
+        },
+        {
+            title:'Nombre Tipo Gasto CC',
+            dataIndex:'nombreGastoCajachica'
+        },
+        {
+            title:'Estado',
+            dataIndex:'activo',
+            render:(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Activo"):String("Inactivo")}</Tag> 
+        },
+        {
+            title:'Acciones',
+            dataIndex:'idGastoCajaChica',
+            render:(text: string, row: IModelTipoGastoCajaChica,index:number)=> <Button key={row.idGastoCajaChica} icon={<EditOutlined/>} type='ghost' onClick={(w)=>{w.stopPropagation(); editTipoGastaCajaChica(row)}}/>
+        }
+    ];
+
     return(
         <React.Fragment>
             <Row gutter={[16,16]} justify="end" align='middle'>
@@ -104,14 +125,11 @@ const   TipoGastoCajaChicaPage = ()=> {
                 </Col>
             </Row>
             <Divider/>
-            <Table<IModelTipoGastoCajaChica> scroll={{x:500}} bordered rowKey="idTipoGastoCajaChica" dataSource={lstFilter.length>0 ? lstFilter : lstTipoGastoCajaChica} size="small" loading={loading}>
-                <Table.Column<IModelTipoGastoCajaChica> key="idTipoGastoCajaChica" title="Id Tipo Gasto CC" dataIndex="idTipoGastoCajaChica"/>
-                <Table.Column<IModelTipoGastoCajaChica> key="nombreGastoCajachica" title="Descripcion Tipo Gasto CC" dataIndex="nombreTipoGastoCajachica"/>
-                <Table.Column<IModelTipoGastoCajaChica> key="activo" title="Estado" dataIndex="activo"render={(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Activo"):String("Inactivo")}</Tag> } />
-                <Table.Column key="idTipoGastoCajaChica" title="Acciones" fixed='right' render={
-                    (row)=> <Button key={row.id} icon={<EditOutlined/>} type='ghost' onClick={()=>editTipoGastaCajaChica(row)}/>
-                }/>
-            </Table>
+            <Row justify='center' align='middle'>
+                <Col flex='auto'>
+                    <Table scroll={{x:500}} columns={columns} rowKey="idGastoCajaChica" dataSource={lstFilter.length>0 ? lstFilter : lstTipoGastoCajaChica} size="small" loading={loading} />
+                </Col>
+            </Row>
             <TipoGastoCajaChicaModal showModal={isModalVisible} formData={tipoGastoCajaChica} onChange={changeModal} isEditData={isEdit} onSave={save}/>
         </React.Fragment>
     );

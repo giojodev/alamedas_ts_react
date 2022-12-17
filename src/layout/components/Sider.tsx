@@ -31,8 +31,8 @@ const items: MenuProps['items'] = [
     getItem('Ingresos Caja Chica', 'ingresoscajachica', <FundProjectionScreenOutlined />),
     getItem('Reportes', 'reportes', <PieChartOutlined />),
     getItem('Configuración', 'configuracion', <SettingOutlined />, [
-        getItem('Tipos', 'g1', null, [getItem('Ingreso', 'configuracion/ingreso'), getItem('Gastos', 'configuracion/gasto')], 'group'),
-        getItem('Caja Chica', 'g2', null, [getItem('Tipo Ingreso', 'configuracion/cingreso'), getItem('Tipo Gastos', 'configuracion/gingreso')], 'group'),
+        getItem('Ingreso / Gasto', 'g1', null, [getItem('Tipo Ingreso', 'configuracion/ingreso'), getItem('Tipo Gastos', 'configuracion/gasto'), getItem('Producto Gastos', 'configuracion/gasto')], 'group'),
+        getItem('Caja Chica', 'g2', null, [getItem('Tipo Ingreso', 'configuracion/cingreso'), getItem('Tipo Gastos', 'configuracion/gingreso'),getItem('Producto Ingreso', 'configuracion/pingreso'),getItem('Producto Gato', 'configuracion/pgasto')], 'group'),
     ]),
 ];
 

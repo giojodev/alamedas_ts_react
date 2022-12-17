@@ -3,7 +3,7 @@ import { Button,Col,Divider,Row,Table,Modal,Input,Tag } from 'antd';
 import { TipoIngresoCajaChicaService } from '../../services/tipoingresocajachica.services';
 import { TipoIngresoCajaChicaModal } from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
-import { useForm } from 'antd/es/form/Form';
+import { ColumnsType } from 'antd/es/table';
 
 const Search = Input.Search;
 
@@ -39,13 +39,13 @@ const TipoIngresoCajaChicaPage = () =>{
         setIsModalVisible(!isModalVisible);
     }
     const editTipoIngresoCajaChica = (data:IModelTipoIngresoCajaChica)=>{
+        console.log(data)
         setTipoIngresoCajaChica(data);
         setIsEdit(true);
         changeModal();
     }
     const newTipoIngresoCajaChica = () =>{
-        var tipoIngresoIngresoCajaChica:IModelTipoIngresoCajaChica ={} as IModelTipoIngresoCajaChica;
-        setTipoIngresoCajaChica(tipoIngresoCajaChica);
+        setTipoIngresoCajaChica({} as IModelTipoIngresoCajaChica);
         setIsEdit(false);
         changeModal();
     }
@@ -76,6 +76,7 @@ const TipoIngresoCajaChicaPage = () =>{
             });
         })
     }
+
     const search=(event:any)=>{
         setLoading(true);
         const filterTable = lstTipoIngresoCajaChica.filter(o=>{
@@ -89,29 +90,45 @@ const TipoIngresoCajaChicaPage = () =>{
         setLoading(true);
     }
     
+    const columns: ColumnsType<IModelTipoIngresoCajaChica> = [
+        {
+            title:'Id',
+            dataIndex:'idIngresoaCajaChica'
+        },
+        {
+            title:'Nombre Tipo Ingreso CC',
+            dataIndex:'nombreIngresoCajaChica'
+        },
+        {
+            title:'Estado',
+            dataIndex:'activo',
+            render:(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Activo"):String("Inactivo")}</Tag> 
+        },
+        {
+            title:'Acciones',
+            dataIndex:'idIngresoaCajaChica',
+            render:(text: string, row: IModelTipoIngresoCajaChica,index:number)=> <Button key={row.idIngresoaCajaChica} icon={<EditOutlined/>} type='ghost' onClick={(w)=>{w.stopPropagation(); editTipoIngresoCajaChica(row)}}/>
+        }
+    ];
+
     return (
-        <>
         <React.Fragment>
             <Row gutter={[16,16]} justify="end" align='middle'>
                 <Col>
-                <Search type='search' placeholder='Buscar' onChange={search}></Search>
+                    <Search type='search' placeholder='Buscar' onChange={search}></Search>
                 </Col>
                 <Col>
-                <Button type='primary' onClick={newTipoIngresoCajaChica}>Nuevo Tipo Ingreso Caja Chica</Button>
+                    <Button type='primary' onClick={newTipoIngresoCajaChica}>Nuevo Tipo Ingreso Caja Chica</Button>
                 </Col>
             </Row>
             <Divider/>
-            <Table<IModelTipoIngresoCajaChica> scroll={{x:500}} bordered rowKey="idTipoIngresoaCajaChica" dataSource={lstFilter.length>0 ? lstFilter : lstTipoIngresoCajaChica} size="small" loading={loading}>
-                <Table.Column<IModelTipoIngresoCajaChica> key="idTipoIngresoaCajaChica" title="Id Tipo Ingreso CC" dataIndex="idTipoGastoCajaChica"/>
-                <Table.Column<IModelTipoIngresoCajaChica> key="nombreTipoIngresoCajaChica" title="Nombre Tipo Ingreso CC" dataIndex="nombreTipoIngresoCajaChica"/>
-                <Table.Column<IModelTipoGastoCajaChica> key="activo" title="Estado" dataIndex="activo"render={(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Activo"):String("Inactivo")}</Tag> } />
-                <Table.Column key="idTipoIngresoaCajaChica" title="Acciones" fixed='right' render={
-                    (row)=> <Button key={row.id} icon={<EditOutlined/>} type='ghost' onClick={()=>editTipoIngresoCajaChica(row)}/>
-                }/>
-            </Table>
+            <Row justify='center' align='middle'>
+                <Col flex='auto'>
+                    <Table scroll={{x:500}} columns={columns} rowKey="idTipoIngresoaCajaChica" dataSource={lstFilter.length>0 ? lstFilter : lstTipoIngresoCajaChica} size="small" loading={loading} />
+                </Col>
+            </Row>
             <TipoIngresoCajaChicaModal showModal={isModalVisible} formData={tipoIngresoCajaChica} onChange={changeModal} isEditData={isEdit} onSave={save}/>
         </React.Fragment>
-        </>
     );
 }
 

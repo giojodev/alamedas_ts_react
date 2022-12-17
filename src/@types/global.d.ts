@@ -1,4 +1,4 @@
-import internal from "stream";
+//import internal from "stream";
 
 interface IModelLogin {
     username: string='' ;
@@ -40,8 +40,8 @@ interface IModelLogin {
   }
 
   interface IModelTipoGastoCajaChica{
-    idTipoGastoCajaChica:int = 0;
-    nombreTipoGastoCajachica:string = "";
+    idGastoCajaChica:int = 0;
+    nombreGastoCajachica:string = "";
     activo:boolean = false;
   }
   interface IModelGasto{
@@ -54,8 +54,8 @@ interface IModelLogin {
     anio:int=2023;
   }
   interface IModelTipoIngresoCajaChica{
-    idTipoIngresoaCajaChica:int = 0;
-    nombreTipoIngresoCajaChica:string = "";
+    idIngresoaCajaChica:int = 0;
+    nombreIngresoCajaChica:string = "";
     activo:boolean = false;
   }
   interface IModelTipoIngreso{  
@@ -63,6 +63,7 @@ interface IModelLogin {
     nombreIngreso:string="",
     activo:boolean= true
   }
+
   interface IModelTipoGasto{
     idGasto:int= 0,
     nombreGasto:string="",
@@ -84,6 +85,7 @@ interface IModelLogin {
     isEditData:boolean;
     onSave:(form:any)=>void;
   }
+
   interface PropTipoIngresoCajaChica{
     showModal: boolean;
     formData:IModelTipoIngresoCajaChica;
@@ -91,16 +93,7 @@ interface IModelLogin {
     isEditData:boolean;
     onSave:(form:any)=>void;
   }
-  // interface IModelTiPoIngreso{
-  //   id_ingreso:int = 0;
-  //   nombre_ingreso:string = "";
-  //   activo:boolean = false;
-  // }
-  // interface IModelTipoGasto{
-  //   id_gasto:int = 0;
-  //   nombre_gasto:string = "";
-  //   activo:boolean = false;
-  // }
+
   interface PropTipoIngreso{
     showModal: boolean;
     formData:IModelTiPoIngreso;
@@ -122,6 +115,13 @@ interface IModelLogin {
     isEditData:boolean;
     onSave:(form:any)=>void;
   }
+
   interface IModelBasedResul{
     Message:string="";
+  }
+
+  interface IModelProductoGasto{
+    id:int= 0,
+    concepto:string="",
+    valor:doblue
   }
