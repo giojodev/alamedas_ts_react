@@ -1,13 +1,13 @@
 import React,{useEffect,useState} from 'react';
 import { Button,Col,Divider,Row,Table,Modal,Input,Tag } from 'antd';
 import { TipoGastoCajaChicaService } from '../../services';
-import {TipoGastoCajaChicaModal} from './components';
+import {TipoGastoCCModal} from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
 import { ColumnsType } from 'antd/es/table';
 
 const Search= Input.Search;
 
-const   TipoGastoCajaChicaPage = ()=> {
+const  TipoGastoCCPage = ()=> {
 
     const [lstTipoGastoCajaChica,setLstTipoGastoCajaChica] = useState([] as Array <IModelTipoGastoCajaChica>);
     const [lstFilter,setLstFilter] = useState([] as Array<IModelTipoGastoCajaChica>);
@@ -130,9 +130,9 @@ const   TipoGastoCajaChicaPage = ()=> {
                     <Table scroll={{x:500}} columns={columns} rowKey="idGastoCajaChica" dataSource={lstFilter.length>0 ? lstFilter : lstTipoGastoCajaChica} size="small" loading={loading} />
                 </Col>
             </Row>
-            <TipoGastoCajaChicaModal showModal={isModalVisible} formData={tipoGastoCajaChica} onChange={changeModal} isEditData={isEdit} onSave={save}/>
+            <TipoGastoCCModal showModal={isModalVisible} formData={tipoGastoCajaChica} onChange={changeModal} isEditData={isEdit} onSave={save}/>
         </React.Fragment>
     );
 }
 
-export {TipoGastoCajaChicaPage};
+export {TipoGastoCCPage};

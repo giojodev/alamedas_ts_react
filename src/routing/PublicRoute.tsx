@@ -1,5 +1,5 @@
 import { Navigate,Route,Routes } from "react-router-dom";
-import{Login,AuthPage,Logout} from "../Modules/auth/Index";
+import{Login,AuthPage,Logout} from "../Modules/Auth/Index";
 
 const PublicRoutes=()=>{
     return (

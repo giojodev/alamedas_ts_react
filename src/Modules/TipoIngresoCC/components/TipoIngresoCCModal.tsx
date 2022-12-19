@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SaveOutlined,CloseCircleOutlined } from '@ant-design/icons';
 import {Modal,Input,InputNumber,Form,Row,Divider,Col,Radio, Button} from "antd";
 
-const TipoIngresoCajaChicaModal =({showModal,formData,onChange,isEditData,onSave}: PropTipoIngresoCajaChica)=>{
+const TipoIngresoCCModal =({showModal,formData,onChange,isEditData,onSave}: PropTipoIngresoCajaChica)=>{
     const spanCol : number = 12;
     const [currentValueRadio,setCurrentValueRadio] = useState(formData.activo);
 
@@ -58,4 +58,4 @@ const TipoIngresoCajaChicaModal =({showModal,formData,onChange,isEditData,onSave
         </>
     );
 } 
-export {TipoIngresoCajaChicaModal};
+export {TipoIngresoCCModal};

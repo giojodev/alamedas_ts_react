@@ -1,13 +1,13 @@
 import React,{useEffect,useState} from 'react';
 import { Button,Col,Divider,Row,Table,Modal,Input,Tag } from 'antd';
 import { TipoIngresoCajaChicaService } from '../../services/tipoingresocajachica.services';
-import { TipoIngresoCajaChicaModal } from './components';
+import { TipoIngresoCCModal } from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
 import { ColumnsType } from 'antd/es/table';
 
 const Search = Input.Search;
 
-const TipoIngresoCajaChicaPage = () =>{
+const TipoIngresoCCPage = () =>{
 
     const [lstTipoIngresoCajaChica, setLstTipoIngresoCajaChica] = useState([] as Array<IModelTipoIngresoCajaChica>);
     const [lstFilter,setLstFilter] = useState([] as Array<IModelTipoIngresoCajaChica>);
@@ -35,15 +35,17 @@ const TipoIngresoCajaChicaPage = () =>{
             });
         }).finally(()=>{setLoading(false);});
     }
+
     const changeModal = ()=>{
         setIsModalVisible(!isModalVisible);
     }
+
     const editTipoIngresoCajaChica = (data:IModelTipoIngresoCajaChica)=>{
-        console.log(data)
         setTipoIngresoCajaChica(data);
         setIsEdit(true);
         changeModal();
     }
+    
     const newTipoIngresoCajaChica = () =>{
         setTipoIngresoCajaChica({} as IModelTipoIngresoCajaChica);
         setIsEdit(false);
@@ -127,9 +129,9 @@ const TipoIngresoCajaChicaPage = () =>{
                     <Table scroll={{x:500}} columns={columns} rowKey="idTipoIngresoaCajaChica" dataSource={lstFilter.length>0 ? lstFilter : lstTipoIngresoCajaChica} size="small" loading={loading} />
                 </Col>
             </Row>
-            <TipoIngresoCajaChicaModal showModal={isModalVisible} formData={tipoIngresoCajaChica} onChange={changeModal} isEditData={isEdit} onSave={save}/>
+            <TipoIngresoCCModal showModal={isModalVisible} formData={tipoIngresoCajaChica} onChange={changeModal} isEditData={isEdit} onSave={save}/>
         </React.Fragment>
     );
 }
 
-export {TipoIngresoCajaChicaPage};
+export {TipoIngresoCCPage};
