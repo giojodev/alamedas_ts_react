@@ -58,6 +58,7 @@ const UserAppPage = () =>{
             icon:<LoadingOutlined/>,
             title:"Guardando...",
             centered:true,
+            okButtonProps:{ disabled:true },
             content:"Se esta guardando el usuario"
         });
 
@@ -67,6 +68,7 @@ const UserAppPage = () =>{
                 icon:<SaveOutlined/>,
                 title:"Guardado",
                 content:data,
+                okButtonProps:{ disabled:false },
                 onOk:changeModal
             });
             fetchListUser();
@@ -75,6 +77,7 @@ const UserAppPage = () =>{
                 icon:<CloseCircleOutlined/>,
                 type:"error",
                 title:"Error",
+                okButtonProps:{ disabled:false },
                 content:error.response.data
             });
         })
@@ -100,7 +103,7 @@ const UserAppPage = () =>{
         },
         {
             title:'Usuario',
-            dataIndex:'usuario'
+            dataIndex:'usuario1'
         },
         {
             title:'Nombre',

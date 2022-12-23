@@ -20,6 +20,7 @@ const  ProductoIngresoCCPage = ()=> {
             icon:<LoadingOutlined/>,
             title:"Guardando...",
             centered:true,
+            okButtonProps:{ disabled:true },
             content:"Se esta guardando el producto"
         });
 
@@ -30,6 +31,7 @@ const  ProductoIngresoCCPage = ()=> {
                 icon:<SaveOutlined/>,
                 title:"Guardado",
                 content:data,
+                okButtonProps:{ disabled:false },
                 onOk:changeModal
             });
             fetchListTipoIngresoCajaChica();
@@ -38,6 +40,7 @@ const  ProductoIngresoCCPage = ()=> {
                 icon:<CloseCircleOutlined/>,
                 type:"error",
                 title:"Error",
+                okButtonProps:{ disabled:false },
                 content:error.response.data
             });
         })

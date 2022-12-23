@@ -3,7 +3,7 @@ import { Button,Col,Divider,Row,Table,Modal,Input,Tag } from 'antd';
 import { TipoGastoService } from '../../services/tipogasto.services';
 import { TipoGastoModal } from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
-import { useForm } from 'antd/es/form/Form';
+import { ColumnsType } from 'antd/es/table';
 
 const Search= Input.Search;
 
@@ -21,7 +21,7 @@ const TipoGastoPage = () =>{
     },[]);
 
     const fetchListTipoGasto = async()=>{
-        var result = TipoGastoService.GetListTipoGasto(0);
+        var result = TipoGastoService.GetListTipoGasto();
 
         result.then((data:any)=>{
             setLstTipoGasto(data);
@@ -56,16 +56,17 @@ const TipoGastoPage = () =>{
             icon:<LoadingOutlined/>,
             title:"Guardando....",
             centered:true,
+            okButtonProps:{ disabled:true },
             content:"Se esta guardando el tipo de gasto"
         });
-
-        var result=isEdit? TipoGastoService.EditTipoGasto(form):TipoGastoService.NewTipoGasto(form);
+        var result=TipoGastoService.NewTipoGasto(form);
 
         result.then((data:any)=>{
             modal.update({
                 icon:<SaveOutlined/>,
                 title:"Guardado",
                 content:data,
+                okButtonProps:{ disabled:false },
                 onOk:changeModal
             });
             fetchListTipoGasto();
@@ -74,10 +75,12 @@ const TipoGastoPage = () =>{
                 icon:<CloseCircleOutlined/>,
                 type:"error",
                 title:"Error",
+                okButtonProps:{ disabled:false },
                 content:error.response.data
             });
         })
     }
+    
     const search=(event:any)=>{
         setLoading(true);
         const filterTable = lstTipoGasto.filter(o=>{
@@ -91,6 +94,28 @@ const TipoGastoPage = () =>{
         setLoading(true);
     }
 
+    const columns: ColumnsType<IModelTipoGasto> = [
+        {
+            title:'Id',
+            dataIndex:'idGasto'
+        },
+        {
+            title:'Nombre',
+            dataIndex:'nombreGasto'
+        },
+        {
+            title:'Estado',
+            dataIndex:'activo',
+            render:(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Activo"):String("Inactivo")}</Tag> 
+        },
+        {
+            title:'Acciones',
+            dataIndex:'idUsuario',
+            render:(text: string, row: IModelTipoGasto,index:number)=> <Button key={row.idGasto} icon={<EditOutlined/>} type='ghost' onClick={(w)=>{w.stopPropagation(); editTipoGasto(row)}}/>
+        }
+    ];
+
+
     return(
         <>
         <React.Fragment>
@@ -103,14 +128,11 @@ const TipoGastoPage = () =>{
                 </Col>
             </Row>
             <Divider/>
-            <Table<IModelTipoGasto> scroll={{x:500}} bordered rowKey="idGasto" dataSource={lstFilter.length>0 ? lstFilter:lstTipoGasto} size="small" loading={loading}>
-                <Table.Column<IModelTipoGasto> key="idGasto" title="Id Gasto" dataIndex="idGasto" />
-                <Table.Column<IModelTipoGasto> key="nombreGasto" title="Nombre Tipo Gasto" dataIndex="nombreGasto"/>
-                <Table.Column<IModelTipoGasto> key="activo" title="Estado" dataIndex="activo"render={(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Activo"):String("Inactivo")}</Tag> } />
-                <Table.Column key="idGasto" title="Acciones" fixed='right' render={
-                    (row)=> <Button key={row.id} icon={<EditOutlined/>} type='ghost' onClick={()=>editTipoGasto(row)}/>
-                }/>
-            </Table>
+            <Row justify='center' align='middle'>
+                <Col flex='auto'>
+                    <Table scroll={{x:500}} columns={columns} rowKey="idGasto" dataSource={lstFilter.length>0 ? lstFilter : lstTipoGasto} size="small" loading={loading} />
+                </Col>
+            </Row>
             <TipoGastoModal showModal={isModalVisible} formData={tipoGasto} onChange={changeModal} isEditData={isEdit} onSave={save}/>
         </React.Fragment>
         </>

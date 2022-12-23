@@ -5,7 +5,6 @@ import {Modal,Input,InputNumber,Form,Row,Divider,Col,Radio, Button} from "antd";
 const UserAppModal =({showModal,formData,onChange,isEditData,onSave}: PropUserApp)=>{
     const spanCol : number = 12; 
     const [currentValueRadio,setCurrentValueRadio] = useState(formData.Activo);
-    const [currentValueRadio2,setCurrentValueRadio2] = useState(formData.Admin);
     return(
         <>
         <Modal visible={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Usuario" : "Nuevo Usuario"} footer={false} centered>
@@ -22,7 +21,7 @@ const UserAppModal =({showModal,formData,onChange,isEditData,onSave}: PropUserAp
                 <Col>
                     <Form.Item
                         label= "Usuario"
-                        name="usuario"
+                        name="usuario1"
                         rules={[{required:true,message:"Ingrese el Usuario"}]}
                     >
                         <Input/>
@@ -71,22 +70,6 @@ const UserAppModal =({showModal,formData,onChange,isEditData,onSave}: PropUserAp
                             >
                                 <Radio.Button value={true}>Activo</Radio.Button>
                                 <Radio.Button value={false}>Inactivo</Radio.Button>
-                            </Radio.Group>
-                        </Form.Item>
-                    </Col>
-                    <Col>
-                        <Form.Item
-                            label="Administrador"
-                            name="admin"
-                            rules={[{required:true,message:"Administrador"}]}
-                        >
-                            <Radio.Group
-                                buttonStyle='solid'
-                                onChange={(e)=>{setCurrentValueRadio2(Boolean(e.target.value));}}
-                                value={currentValueRadio2}
-                            >
-                                <Radio.Button value={true}>Si</Radio.Button>
-                                <Radio.Button value={false}>No</Radio.Button>
                             </Radio.Group>
                         </Form.Item>
                     </Col>

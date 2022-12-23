@@ -8,3 +8,4 @@ export * from './TipoIngreso';
 export * from './ProductoGastoCC';
 export * from './ProductoIngresoCC';
 export * from './UserApp';
+export * from './Role';

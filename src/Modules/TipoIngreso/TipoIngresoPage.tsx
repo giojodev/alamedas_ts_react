@@ -3,7 +3,7 @@ import { Button,Col,Divider,Row,Table,Modal,Input,Tag } from 'antd';
 import { TipoIngresoService } from '../../services/tipoingreso.services';
 import { TipoIngresoModal } from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
-import { useForm } from 'antd/es/form/Form';
+import { ColumnsType } from 'antd/es/table';
 
 const Search = Input.Search;
 const TipoIngresoPage = () =>{
@@ -55,15 +55,17 @@ const TipoIngresoPage = () =>{
             icon:<LoadingOutlined/>,
             title:"Guardando...",
             centered:true,
+            okButtonProps:{ disabled:true },
             content:"Se esta guardando el tipo de ingreso"
         });
 
-        var result=isEdit? TipoIngresoService.EditTipoIngreso(form) : TipoIngresoService.NewTipoIngreso(form);
+        var result= TipoIngresoService.NewTipoIngreso(form);
         result.then((data:any)=>{
             modal.update({
                 icon:<SaveOutlined/>,
                 title:"Guardado",
                 content:data,
+                okButtonProps:{ disabled:false },
                 onOk:changeModal
             });
             fetchListTipoIngreso();
@@ -72,10 +74,12 @@ const TipoIngresoPage = () =>{
                 icon:<CloseCircleOutlined/>,
                 type:"error",
                 title:"Error",
+                okButtonProps:{ disabled:false },
                 content:error.response.data
             });
         })
     }
+
     const search=(event:any)=>{
         setLoading(true);
         const filterTable=lstTipoIngreso.filter(o=>{
@@ -88,6 +92,28 @@ const TipoIngresoPage = () =>{
         setLstFilter(filterTable);
         setLoading(true);
     }
+
+    const columns: ColumnsType<IModelTipoIngreso> = [
+        {
+            title:'Id',
+            dataIndex:'idIngreso'
+        },
+        {
+            title:'Nombre',
+            dataIndex:'nombreIngreso'
+        },
+        {
+            title:'Estado',
+            dataIndex:'activo',
+            render:(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Activo"):String("Inactivo")}</Tag> 
+        },
+        {
+            title:'Acciones',
+            dataIndex:'idUsuario',
+            render:(text: string, row: IModelTipoIngreso,index:number)=> <Button key={row.idIngreso} icon={<EditOutlined/>} type='ghost' onClick={(w)=>{w.stopPropagation(); editTipoIgreso(row)}}/>
+        }
+    ];
+
     return (
         <>
         <React.Fragment>
@@ -100,14 +126,11 @@ const TipoIngresoPage = () =>{
                 </Col>
             </Row>
             <Divider/>
-            <Table<IModelTipoIngreso> scroll={{x:500}} bordered rowKey="idIngreso" dataSource={lstFilter.length>0 ?lstFilter:lstTipoIngreso} size="small" loading={loading}>
-                <Table.Column<IModelTipoIngreso> key="idIngreso" title="Id Ingreso" dataIndex={"idIngreso"}/>
-                <Table.Column<IModelTipoIngreso> key="nombreIngreso" title="Nombre Ingreso" dataIndex={"nombreIngreso"}/>
-                <Table.Column<IModelTipoIngreso> key="activo" title="Estado" dataIndex="activo"render={(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Activo"):String("Inactivo")}</Tag> } />
-                <Table.Column key="idIngreso" title="Acciones" fixed='right' render={
-                    (row)=> <Button key={row.id} icon={<EditOutlined/>} type='ghost' onClick={()=>editTipoIgreso(row)}/>
-                }/>
-            </Table>
+            <Row justify='center' align='middle'>
+                <Col flex='auto'>
+                    <Table scroll={{x:500}} columns={columns} rowKey="idIngreso" dataSource={lstFilter.length>0 ? lstFilter : lstTipoIngreso} size="small" loading={loading} />
+                </Col>
+            </Row>
             <TipoIngresoModal showModal={isModalVisible} formData={tipoIngreso} isEditData={isEdit} onChange={changeModal} onSave={save}/>
         </React.Fragment>
         </>
