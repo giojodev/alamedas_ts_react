@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { SaveOutlined,CloseCircleOutlined } from '@ant-design/icons';
-import {Modal,Input,InputNumber,Form,Row,Divider,Col,Radio, Button} from "antd";
+import {Modal,Input,Form,Row,Divider,Col,Radio, Button} from "antd";
 
 const TipoIngresoModal =({showModal,formData,onChange,isEditData,onSave}: PropTipoIngreso)=>{
     const spanCol : number = 12; 
@@ -8,34 +8,32 @@ const TipoIngresoModal =({showModal,formData,onChange,isEditData,onSave}: PropTi
 
     return(
         <>
-        <Modal visible={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Tipo Gasto" : "Nuevo Tipo Gasto" } footer={false} centered>
-            <Row justify='center'>
+        <Modal visible={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Tipo Ingreso" : "Nuevo Tipo Ingreso" } footer={false} centered>      
                 <Form layout='vertical' labelWrap labelCol={{span:12}} initialValues={formData} onFinish={onSave}>
-                    <Row gutter={[16,16]}>
-                        <Col span={spanCol}>
-                            <Form.Item 
-                            label="Id Ingreso"
-                            name="id_ingreso"
-                            rules={[{required:true,message:"Ingrese un numero de id"}]}
-                            >
-                                <InputNumber min = {1} disabled = {isEditData} />
-                            </Form.Item>
-                        </Col>
-                        <Col span={spanCol}>
-                            <Form.Item
-                              label= "Nombre de Tipo de Ingreso"
-                              name="nombre_ingreso"
-                              rules={[{required:true,message:"Ingrese el nombre del ingreso"}]}
-                            >
-                                <Input/>
-                            </Form.Item>
-                        </Col>
-                        <Col span={spanCol}>
-                            <Form.Item
+                     <Col>
+                        <Form.Item
+                            label="id_ingreso"
+                            name="idIngreso"
+                            hidden
+                        >
+                            <Input hidden/>
+                        </Form.Item>
+                    </Col>
+                    <Col>
+                        <Form.Item
+                            label="Nombre de Tipo de Ingreso"
+                            name="nombreIngreso"
+                            rules={[{required:true,message:"Ingrese el nombre del ingreso"}]}
+                        >
+                            <Input/>
+                        </Form.Item>
+                    </Col>
+                    <Col span={spanCol}>
+                        <Form.Item
                             label="Activo"
                             name="activo"
                             rules={[{required:true,message:"Seleccione el estado"}]}
-                            >
+                        >
                             <Radio.Group
                                 buttonStyle='solid'
                                 onChange={(e)=>{setCurrentValueRadio(Boolean(e.target.value));}}
@@ -44,9 +42,8 @@ const TipoIngresoModal =({showModal,formData,onChange,isEditData,onSave}: PropTi
                                 <Radio.Button value={true}>Activo</Radio.Button>
                                 <Radio.Button value={false}>Inactivo</Radio.Button>
                             </Radio.Group>
-                            </Form.Item>
-                        </Col>
-                    </Row>
+                        </Form.Item>
+                    </Col>
                     <Divider/>
                     <Row justify='space-around'>
                         <Button type='default' onClick={onChange} icon={<CloseCircleOutlined/>}>
@@ -57,7 +54,7 @@ const TipoIngresoModal =({showModal,formData,onChange,isEditData,onSave}: PropTi
                         </Button>
                     </Row>
                 </Form>
-            </Row>
+            
         </Modal> 
         </>
     )

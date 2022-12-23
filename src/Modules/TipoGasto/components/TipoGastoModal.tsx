@@ -9,29 +9,30 @@ const TipoGastoModal =({showModal,formData,onChange,isEditData,onSave}: PropTipo
     return(
         <>
         <Modal visible={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Tipo Gasto" : "Nuevo Tipo Gasto" } footer={false} centered>
-            <Row justify='center'>
-                <Form layout='vertical' labelWrap labelCol={{span:12}} initialValues={formData} onFinish={onSave}>
-                    <Row gutter={[16,16]}>
-                        <Col span={spanCol}>
-                            <Form.Item 
-                            label="Id Gasto"
-                            name="id_gasto"
-                            rules={[{required:true,message:"Ingrese un numero de id"}]}
-                            >
-                                <InputNumber min = {1} disabled = {isEditData} />
-                            </Form.Item>
-                        </Col>
-                        <Col span={spanCol}>
-                            <Form.Item
-                              label= "Nombre de Tipo de Gasto"
-                              name="nombre_gasto"
-                              rules={[{required:true,message:"Ingrese el nombre del gasto"}]}
-                            >
-                                <Input/>
-                            </Form.Item>
-                        </Col>
-                        <Col span={spanCol}>
-                            <Form.Item
+            <Form layout='vertical' labelWrap labelCol={{span:12}} initialValues={formData} onFinish={onSave}>
+                    <Col>
+                        <Form.Item
+                            label = "Id Gasto"
+                            name = "idGasto"
+                            hidden
+                        >
+                            <Input hidden/>
+                        </Form.Item>
+                    </Col>
+                    <Col>
+                        <Form.Item
+                            label="Nombre"
+                            name="nombreGasto"
+                            rules={[
+                                {required:true,message:"Ingrese el gasto"},
+                                {min:2,message:"Ingrese minimo 2 caracteres"}
+                            ]}
+                        >
+                                <Input />
+                        </Form.Item>
+                    </Col>
+                    <Col>
+                        <Form.Item
                             label="Activo"
                             name="activo"
                             rules={[{required:true,message:"Seleccione el estado"}]}
@@ -44,9 +45,8 @@ const TipoGastoModal =({showModal,formData,onChange,isEditData,onSave}: PropTipo
                                 <Radio.Button value={true}>Activo</Radio.Button>
                                 <Radio.Button value={false}>Inactivo</Radio.Button>
                             </Radio.Group>
-                            </Form.Item>
-                        </Col>
-                    </Row>
+                        </Form.Item>
+                    </Col>
                     <Divider/>
                     <Row justify='space-around'>
                         <Button type='default' onClick={onChange} icon={<CloseCircleOutlined/>}>
@@ -56,8 +56,7 @@ const TipoGastoModal =({showModal,formData,onChange,isEditData,onSave}: PropTipo
                             Guardar
                         </Button>
                     </Row>
-                </Form>
-            </Row>
+            </Form>
         </Modal> 
         </>
     );

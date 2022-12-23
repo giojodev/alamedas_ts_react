@@ -92,5 +92,66 @@ class AccountService{
         });
     }
 
+    /****role*** */
+    
+    static async GetListRole(){
+        return new Promise((resolve, reject) => {
+            const sessionData = SessionData() as IModelLoginRequest;
+            let response:Array<IModelRole>= [] as Array<IModelRole>
+            axios.get(urlBase + 'Alamedas/Security/RoleList', 
+            {
+                headers: {
+                'Authorization': `Bearer ${sessionData.token}` 
+                }
+            })
+            .then(responsePost=>{
+                console.log(responsePost);
+                resolve(responsePost.data);
+            })
+            .catch(error=>{
+                reject(error);
+                console.log("AccountService.service.tsx ~ line 97 ~ AccountService ~ GetListRole ~ error",error);
+            });
+         });
+    } 
+
+    static NewRol = async(model:IModelRole)=>{
+        return new Promise((resolve, reject) => {
+            const sessionData = SessionData() as IModelLoginRequest;
+            let response:Array<IModelRole>= [] as Array<IModelRole>
+            axios.post(urlBase + 'Alamedas/Security/InsertRole',model, {
+                headers: {
+                'Authorization': `Bearer ${sessionData.token}` 
+                }
+            })
+            .then(responsePost=>{
+                resolve(responsePost.data);
+            })
+            .catch(error=>{
+                reject(error);
+                console.log("AccountService.service.tsx ~ line 118  ~ AccountService ~ NewRol ~ error:",error);
+            });
+        });
+    }
+
+    static EditRole = async (model: IModelRole)=>{
+        return new Promise((resolve, reject) => {
+            const sessionData = SessionData() as IModelLoginRequest;
+            let response:Array<IModelRole>= [] as Array<IModelRole>
+            axios.put(urlBase + 'Alamedas/Security/EditRole',model, {
+                headers: {
+                'Authorization': `Bearer ${sessionData.token}` 
+                }
+            })
+            .then(responsePost=>{
+                resolve(responsePost.data);
+            })
+            .catch(error=>{
+                reject(error);
+                console.log("AccountService.service.tsx ~ line 137  ~ AccountService ~ EditRole ~ error:",error);
+            });
+        });
+    }
+
 }
 export {AccountService};

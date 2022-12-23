@@ -1,6 +1,6 @@
 import {Route,Routes, Navigate } from "react-router-dom";
 import { MasterLayout } from "../layout";
-import { HomePage,CondominiumPage,TipoIngresoCCPage,TipoIngresoPage,TipoGastoCCPage,TipoGastoPage,ProductoGastoCCPage,ProductoIngresoCCPage,UserAppPage } from "../Modules";
+import { HomePage,CondominiumPage,TipoIngresoCCPage,TipoIngresoPage,TipoGastoCCPage,TipoGastoPage,ProductoGastoCCPage,ProductoIngresoCCPage,UserAppPage,RolePage } from "../Modules";
 
 const PrivateRoutes=()=>{
     return(
@@ -15,6 +15,7 @@ const PrivateRoutes=()=>{
                 <Route path="configuracion/pgasto" element={<ProductoGastoCCPage/>}/>
                 <Route path="configuracion/pingreso" element={<ProductoIngresoCCPage/>}/>
                 <Route path="configuracion/usuarioapp" element={<UserAppPage/>}/>
+                <Route path="configuracion/rol" element={<RolePage/>}/>
             </Route>
             <Route path="/login" element={<Navigate to="/home"/>}/>
         </Routes>

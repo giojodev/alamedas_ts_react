@@ -20,7 +20,8 @@ const  ProductoGastoCCPage = ()=> {
             icon:<LoadingOutlined/>,
             title:"Guardando...",
             centered:true,
-            content:"Se esta guardando el producto"
+            content:"Se esta guardando el producto",
+            okButtonProps:{ disabled:true }
         });
 
         var result=isEdit? ProductosService.EditGastoCC(form) : ProductosService.NewGastoCC(form);
@@ -30,6 +31,7 @@ const  ProductoGastoCCPage = ()=> {
                 icon:<SaveOutlined/>,
                 title:"Guardado",
                 content:data,
+                okButtonProps:{ disabled:false },
                 onOk:changeModal
             });
             fetchListTipoIngresoCajaChica();
@@ -38,6 +40,7 @@ const  ProductoGastoCCPage = ()=> {
                 icon:<CloseCircleOutlined/>,
                 type:"error",
                 title:"Error",
+                okButtonProps:{ disabled:false },
                 content:error.response.data
             });
         })

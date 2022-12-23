@@ -163,11 +163,24 @@ interface IModelProductoIngresoCC {
 
 interface IModelUserApp {
   idUsuario: int = 0;
-  Usuario: string = "";
+  Usuario1: string = "";
   Contrasena: string = "";
   Nombre: string = "";
   Correo: string = "";
   IdRol: int = 0;
   Activo: boolean = true;
-  Admin: boolean = true;
+}
+
+interface IModelRole {
+  idRol: int = 0;
+  nombre: string = "";
+  descripcion: doblue;
+}
+
+interface PropRole{
+  showModal: boolean;
+  formData: IModelRole;
+  onChange: (event: React.MouseEvent) => void;
+  isEditData: boolean;
+  onSave: (form: any) => void;
 }
