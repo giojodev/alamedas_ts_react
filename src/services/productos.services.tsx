@@ -36,7 +36,7 @@ class ProductosService{
             })
             .catch(error=>{
                 reject(error);
-                console.log("GastosService ¬ line 26 ¬ NewGastoCC ¬ error",error);
+                console.log("ProductoService ¬ line 26 ¬ NewGastoCC ¬ error",error);
             })
         })
     }
@@ -54,7 +54,7 @@ class ProductosService{
             })
             .catch(error=>{
                 reject(error);
-                console.log("GastosService ¬ line 44 ¬ EditGastoCC ¬ error",error);
+                console.log("ProductoService ¬ line 44 ¬ EditGastoCC ¬ error",error);
             })
         })
     }
@@ -89,7 +89,7 @@ class ProductosService{
             })
             .catch(error=>{
                 reject(error);
-                console.log("GastosService ¬ line 79 ¬ NewIngresoCC ¬ error",error);
+                console.log("ProductoService ¬ line 79 ¬ NewIngresoCC ¬ error",error);
             })
         })
     }
@@ -107,11 +107,70 @@ class ProductosService{
             })
             .catch(error=>{
                 reject(error);
-                console.log("GastosService ¬ line 97 ¬ EditIngresoCC ¬ error",error);
+                console.log("ProductoService ¬ line 97 ¬ EditIngresoCC ¬ error",error);
             })
         })
     }
 
+    static async GetListProductoGasto(idEntity:any)
+    {
+        return new Promise((resolve,reject)=>{
+            const sessionData=SessionData() as IModelLoginRequest;
+            axios.get(urlBase+"Alamedas/Catalog/ProductoGastoLista",{
+                headers:{
+                    'Authorization': `Bearer ${sessionData.token}` 
+                },
+                params:{
+                    Id:idEntity
+                }
+            }).then(response=>{
+                resolve(response.data);
+            }).catch(error=>{
+                reject(error);
+                console.log("ProductoService ¬ line 130 ¬ GetListProductoGasto ¬ error",error);
+            })
+            
+        })
+    }
+    static NewProductoGasto= async(model:IModelProductoGasto)=>{
+    return new Promise((resolve,reject)=>{
+        const sessionData= SessionData() as IModelLoginRequest;
+        axios.post(urlBase+"Almedas/Transactions/InsertProductoGasto",model,{
+            headers:{
+                'Authorization': `Bearer ${sessionData.token}`
+            }
+        })
+        .then(resposePost=>{
+            resolve(resposePost.data);
+        })
+        .catch(error=>{
+            reject(error);
+            console.log("ProductoService ¬ line 148 ¬ NewProductoGasto ¬ error",error);
+            
+        })
+    })
+    }
+    
+    static EditProductoGasto = async(model:IModelProductoGasto)=>{
+        return new Promise((resolve,reject)=>{
+            const sessionData=SessionData() as IModelLoginRequest;
+            axios.put(urlBase+"Almedas/Transactions/UpdateProductoGasto",model,{
+                headers:{
+                    'Authorization': `Bearer ${sessionData.token}`
+                }
+            })
+            .then(response=>{
+                resolve(response.data);
+            })
+            .catch(error=>{
+                reject(error);
+                console.log("ProductoService ¬ line 167 ¬ EditProductoGasto ¬ error",error);
+                
+            })
+        })
+    }
 }
+
+
 
 export {ProductosService};
