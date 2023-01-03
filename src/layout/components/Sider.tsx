@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { HomeOutlined,ContactsOutlined,RiseOutlined,FallOutlined,PieChartOutlined,FundProjectionScreenOutlined,FundViewOutlined,SettingOutlined } from "@ant-design/icons";
+import { HomeOutlined,ContactsOutlined,RiseOutlined,FallOutlined,PieChartOutlined,FundProjectionScreenOutlined,FundViewOutlined,SettingOutlined,UserOutlined  } from "@ant-design/icons";
 import { Layout,Menu } from "antd";
 import type { MenuProps } from 'antd';
 import logo from '../../assets/img/logo7.png';
@@ -31,8 +31,9 @@ const items: MenuProps['items'] = [
     getItem('Ingresos Caja Chica', 'ingresoscajachica', <FundProjectionScreenOutlined />),
     getItem('Reportes', 'reportes', <PieChartOutlined />),
     getItem('Configuración', 'configuracion', <SettingOutlined />, [
-        getItem('Tipos', 'g1', null, [getItem('Ingreso', 'configuracion/ingreso'), getItem('Gastos', 'configuracion/gasto')], 'group'),
-        getItem('Caja Chica', 'g2', null, [getItem('Tipo Ingreso', 'configuracion/cingreso'), getItem('Tipo Gastos', 'configuracion/gingreso')], 'group'),
+        getItem('Ingreso / Gasto', 'g1', null, [getItem('Tipo Ingreso', 'configuracion/ingreso'), getItem('Tipo Gastos', 'configuracion/gasto'), getItem('Producto Gastos', 'configuracion/producto')], 'group'),
+        getItem('Caja Chica', 'g2', null, [getItem('Tipo Ingreso', 'configuracion/cingreso'), getItem('Tipo Gastos', 'configuracion/gingreso'),getItem('Producto Ingreso', 'configuracion/pingreso'),getItem('Producto Gasto', 'configuracion/pgasto')], 'group'),
+        getItem('Seguridad', 'g3', null, [getItem('Usuarios', 'configuracion/usuarioapp'), getItem('Roles', 'configuracion/rol')], 'group'),
     ]),
 ];
 

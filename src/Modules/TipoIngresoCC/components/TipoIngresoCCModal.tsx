@@ -1,19 +1,19 @@
-import {useState} from 'react';
+import { useState } from "react";
 import { SaveOutlined,CloseCircleOutlined } from '@ant-design/icons';
-import {Modal,Input,Form,Row,Divider,Col,Radio, Button} from "antd";
+import {Modal,Input,InputNumber,Form,Row,Divider,Col,Radio, Button} from "antd";
 
-const TipoIngresoModal =({showModal,formData,onChange,isEditData,onSave}: PropTipoIngreso)=>{
-    const spanCol : number = 12; 
+const TipoIngresoCCModal =({showModal,formData,onChange,isEditData,onSave}: PropTipoIngresoCajaChica)=>{
+    const spanCol : number = 12;
     const [currentValueRadio,setCurrentValueRadio] = useState(formData.activo);
 
-    return(
+    return (
         <>
-        <Modal visible={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Tipo Ingreso" : "Nuevo Tipo Ingreso" } footer={false} centered>      
-                <Form layout='vertical' labelWrap labelCol={{span:12}} initialValues={formData} onFinish={onSave}>
-                     <Col>
+            <Modal visible={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Tipo Ingreso Caja Chica" : "Nuevo Tipo Ingreso Caja Chica"} footer={false} centered>
+                <Form layout="vertical" labelWrap labelCol={{span:12}} initialValues={formData} onFinish={onSave}>
+                    <Col>
                         <Form.Item
-                            label="id_ingreso"
-                            name="idIngreso"
+                            label="Id Ingreso Caja Chica"
+                            name="idIngresoaCajaChica"
                             hidden
                         >
                             <Input hidden/>
@@ -21,8 +21,8 @@ const TipoIngresoModal =({showModal,formData,onChange,isEditData,onSave}: PropTi
                     </Col>
                     <Col>
                         <Form.Item
-                            label="Nombre de Tipo de Ingreso"
-                            name="nombreIngreso"
+                            label="Ingreso Caja Chica"
+                            name="nombreIngresoCajaChica"
                             rules={[{required:true,message:"Ingrese el nombre del ingreso"}]}
                         >
                             <Input/>
@@ -45,7 +45,7 @@ const TipoIngresoModal =({showModal,formData,onChange,isEditData,onSave}: PropTi
                         </Form.Item>
                     </Col>
                     <Divider/>
-                    <Row justify='space-around'>
+                    <Row justify="space-around">
                         <Button type='default' onClick={onChange} icon={<CloseCircleOutlined/>}>
                             Cerrar
                         </Button>
@@ -54,10 +54,8 @@ const TipoIngresoModal =({showModal,formData,onChange,isEditData,onSave}: PropTi
                         </Button>
                     </Row>
                 </Form>
-            
-        </Modal> 
+            </Modal>
         </>
-    )
-}   
-
-export {TipoIngresoModal};
+    );
+} 
+export {TipoIngresoCCModal};

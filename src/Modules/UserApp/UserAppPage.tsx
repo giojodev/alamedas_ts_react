@@ -1,30 +1,31 @@
 import React,{useEffect,useState} from 'react';
 import { Button,Col,Divider,Row,Table,Modal,Input,Tag } from 'antd';
-import { TipoGastoService } from '../../services/tipogasto.services';
-import { TipoGastoModal } from './components';
+import { AccountService } from '../../services';
+import { UserAppModal } from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
 import { ColumnsType } from 'antd/es/table';
 
-const Search= Input.Search;
+const Search = Input.Search;
 
-const TipoGastoPage = () =>{
+const UserAppPage = () =>{
 
-    const [lstTipoGasto,setLstTipoGasto] = useState([] as Array<IModelTipoGasto>);
-    const [lstFilter,setLstFilter] = useState([] as Array<IModelTipoGasto>);
+    const [lstUser, setLstUser] = useState([] as Array<IModelUserApp>);
+    const [lstFilter,setLstFilter] = useState([] as Array<IModelUserApp>);
     const [loading,setLoading] = useState(false);
-    const [tipoGasto,setTipoGasto] = useState({} as IModelTipoGasto);
-    const[isModalVisible,setIsModalVisible] = useState(false);
-    const[isEdit,setIsEdit] = useState(false);
+    const [User,setUser] = useState({} as IModelUserApp);
+    const [isModalVisible,setIsModalVisible] = useState(false);
+    const [isEdit,setIsEdit] = useState(false);
 
     useEffect(()=>{
-        fetchListTipoGasto();
+        fetchListUser();
     },[]);
 
-    const fetchListTipoGasto = async()=>{
-        var result = TipoGastoService.GetListTipoGasto();
+    const fetchListUser = async()=>{
+
+        var result = AccountService.GetListUser();
 
         result.then((data:any)=>{
-            setLstTipoGasto(data);
+            setLstUser(data);
         })
         .catch((error:any)=>{
             Modal.error({
@@ -35,32 +36,33 @@ const TipoGastoPage = () =>{
             });
         }).finally(()=>{setLoading(false);});
     }
-    const changeModal = () =>{
+
+    const changeModal = ()=>{
         setIsModalVisible(!isModalVisible);
     }
-    const editTipoGasto = (data:IModelTipoGasto)=>{
-        setTipoGasto(data);
+
+    const editUser = (data:IModelUserApp)=>{
+        setUser(data);
         setIsEdit(true);
         changeModal();
     }
-
-    const newTipoGasto=()=>{
-        var tipoGasto:IModelTipoGasto={} as IModelTipoGasto;
-        setTipoGasto(tipoGasto);
+    
+    const NewUser = () =>{
+        setUser({} as IModelUserApp);
         setIsEdit(false);
         changeModal();
     }
 
-    const save = (form:IModelTipoGasto)=>{
-        const modal=Modal.success({
+    const save = (form:IModelUserApp)=>{
+        const modal = Modal.success({
             icon:<LoadingOutlined/>,
-            title:"Guardando....",
+            title:"Guardando...",
             centered:true,
             okButtonProps:{ disabled:true },
-            content:"Se esta guardando el tipo de gasto"
+            content:"Se esta guardando el usuario"
         });
-        var result=TipoGastoService.NewTipoGasto(form);
 
+        var result=isEdit? AccountService.EditUser(form) : AccountService.NewUser(form);
         result.then((data:any)=>{
             modal.update({
                 icon:<SaveOutlined/>,
@@ -69,7 +71,7 @@ const TipoGastoPage = () =>{
                 okButtonProps:{ disabled:false },
                 onOk:changeModal
             });
-            fetchListTipoGasto();
+            fetchListUser();
         }).catch((error:any)=>{
             modal.update({
                 icon:<CloseCircleOutlined/>,
@@ -80,10 +82,10 @@ const TipoGastoPage = () =>{
             });
         })
     }
-    
+
     const search=(event:any)=>{
         setLoading(true);
-        const filterTable = lstTipoGasto.filter(o=>{
+        const filterTable = lstUser.filter(o=>{
             const g = Object.keys as <T>(o:T)=>(Extract<keyof T,string>)[];
             return g(o).some(a=>{
                 var isFind = String (o[a]).toLowerCase().includes(event.target.value);
@@ -93,15 +95,28 @@ const TipoGastoPage = () =>{
         setLstFilter(filterTable);
         setLoading(true);
     }
-
-    const columns: ColumnsType<IModelTipoGasto> = [
+    
+    const columns: ColumnsType<IModelUserApp> = [
         {
             title:'Id',
-            dataIndex:'idGasto'
+            dataIndex:'idUsuario'
+        },
+        {
+            title:'Usuario',
+            dataIndex:'usuario1'
         },
         {
             title:'Nombre',
-            dataIndex:'nombreGasto'
+            dataIndex:'nombre'
+        },
+        {
+            title:'Correo',
+            dataIndex:'correo'
+        },
+        {
+            title:'Admin',
+            dataIndex:'admin',
+            render:(text) => <Tag color={text==true?"green":"volcano"} >{text==true?String("Si"):String("No")}</Tag> 
         },
         {
             title:'Estado',
@@ -111,32 +126,29 @@ const TipoGastoPage = () =>{
         {
             title:'Acciones',
             dataIndex:'idUsuario',
-            render:(text: string, row: IModelTipoGasto,index:number)=> <Button key={row.idGasto} icon={<EditOutlined/>} type='ghost' onClick={(w)=>{w.stopPropagation(); editTipoGasto(row)}}/>
+            render:(text: string, row: IModelUserApp,index:number)=> <Button key={row.idUsuario} icon={<EditOutlined/>} type='ghost' onClick={(w)=>{w.stopPropagation(); editUser(row)}}/>
         }
     ];
 
-
-    return(
-        <>
+    return (
         <React.Fragment>
             <Row gutter={[16,16]} justify="end" align='middle'>
                 <Col>
-                <Search type="search" placeholder='Buscar' onChange={search}></Search>
+                    <Search type='search' placeholder='Buscar' onChange={search}></Search>
                 </Col>
                 <Col>
-                <Button type="primary" onClick={newTipoGasto}>Nuevo Tipo Gasto</Button>
+                    <Button type='primary' onClick={NewUser}>Nuevo Usuario</Button>
                 </Col>
             </Row>
             <Divider/>
             <Row justify='center' align='middle'>
                 <Col flex='auto'>
-                    <Table scroll={{x:500}} columns={columns} rowKey="idGasto" dataSource={lstFilter.length>0 ? lstFilter : lstTipoGasto} size="small" loading={loading} />
+                    <Table scroll={{x:500}} columns={columns} rowKey="idUsuario" dataSource={lstFilter.length>0 ? lstFilter : lstUser} size="small" loading={loading} />
                 </Col>
             </Row>
-            <TipoGastoModal showModal={isModalVisible} formData={tipoGasto} onChange={changeModal} isEditData={isEdit} onSave={save}/>
+            <UserAppModal showModal={isModalVisible} formData={User} onChange={changeModal} isEditData={isEdit} onSave={save}/>
         </React.Fragment>
-        </>
     );
 }
 
-export {TipoGastoPage};
+export {UserAppPage};

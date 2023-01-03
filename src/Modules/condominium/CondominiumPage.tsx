@@ -3,6 +3,7 @@ import {Button,Col,Divider,Row,Table,Modal,Input,Tag} from 'antd';
 import {CondominoService} from '../../services';
 import {CondominoModal} from './components';
 import { EditOutlined,LoadingOutlined,SaveOutlined,CloseCircleOutlined } from "@ant-design/icons";
+
 const Search=Input.Search;
 
 const CondominiumPage = () =>{

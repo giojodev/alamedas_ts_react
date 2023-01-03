@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { IModelGasto, IModelLoginRequest } from '../@types/global';
 import { SessionData } from '../helpers';
 
 const GetBaseUrl=()=>{
