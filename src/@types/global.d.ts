@@ -75,6 +75,12 @@ interface IModelTipoGasto {
   activo: boolean = true;
 }
 
+interface IModelProductoGasto{
+  IdEntity:int= 0;
+  Concepto:string ="";
+  Valor:double =0;
+}
+
 interface PropCondo {
   showModal: boolean;
   formData: IModelCondomino;
@@ -135,6 +141,13 @@ interface PropGasto {
   onChange: (event: React.MouseEvent) => void;
   isEditData: boolean;
   onSave: (form: any) => void;
+}
+interface PropProdGasto{
+  showModal: boolean;
+  formData: IModelProductoGasto;
+  onChange: (event: React.MouseEvent) => void;
+  isEditData: boolean;
+  onSave: (form: any) => void; 
 }
 
 interface PropUserApp {
