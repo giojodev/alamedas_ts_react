@@ -197,3 +197,16 @@ interface PropRole{
   isEditData: boolean;
   onSave: (form: any) => void;
 }
+
+interface IModelIngresocc{
+  consecutivo: int = 0;
+  idusuario: int = 0;
+  tipoIngresoC: int = 0;
+  nombreIngresoCajaChica: string = '';
+  fecha: date;
+  concepto: string = '';
+  total: doblue;
+  mes: int = 0;
+  anio: int = 0;
+  anulado: boolean = true;
+}

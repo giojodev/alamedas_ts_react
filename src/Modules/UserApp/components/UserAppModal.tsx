@@ -7,13 +7,14 @@ const UserAppModal =({showModal,formData,onChange,isEditData,onSave}: PropUserAp
     const [currentValueRadio,setCurrentValueRadio] = useState(formData.Activo);
     return(
         <>
-        <Modal visible={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Usuario" : "Nuevo Usuario"} footer={false} centered>
+        <Modal open={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Usuario" : "Nuevo Usuario"} footer={false} centered>
             <Form layout="vertical" labelWrap labelCol={{span:12}} initialValues={formData} onFinish={onSave}>
                 <Col>
                     <Form.Item
                         label="idUsuario"
                         name="idUsuario"
                         hidden
+                        style={{ marginBottom: 0 }}
                     >
                         <InputNumber hidden/>
                     </Form.Item>
@@ -62,6 +63,7 @@ const UserAppModal =({showModal,formData,onChange,isEditData,onSave}: PropUserAp
                             label="Activo"
                             name="activo"
                             rules={[{required:true,message:"Seleccione el estado"}]}
+                            style={{ marginBottom: 0 }}
                         >
                             <Radio.Group
                                 buttonStyle='solid'

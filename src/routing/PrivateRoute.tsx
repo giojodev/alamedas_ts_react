@@ -1,13 +1,14 @@
 import {Route,Routes, Navigate } from "react-router-dom";
 import { MasterLayout } from "../layout";
-import { HomePage,CondominiumPage,TipoIngresoCCPage,TipoIngresoPage,TipoGastoCCPage,TipoGastoPage,ProductoGastoCCPage,ProductoIngresoCCPage,UserAppPage,RolePage,ProductoGastoPage } from "../Modules";
+import { HomePage,CondominiumPage,TipoIngresoCCPage,TipoIngresoPage,TipoGastoCCPage,TipoGastoPage,ProductoGastoCCPage,ProductoIngresoCCPage,UserAppPage,RolePage,ProductoGastoPage,IngresoCCPage } from "../Modules";
 
 const PrivateRoutes=()=>{
     return(
         <Routes>
             <Route path="/*" element={<MasterLayout/>}>
-                <Route path="home" element={<HomePage/>}/>
-                <Route path="condominium" element={<CondominiumPage/>}/>
+                <Route path="inicio" element={<HomePage/>}/>
+                <Route path="condominio" element={<CondominiumPage/>}/>
+                <Route path="ingresoscajachica" element={<IngresoCCPage/>}/>
                 <Route path="configuracion/cingreso" element={<TipoIngresoCCPage/>}/>
                 <Route path="configuracion/gingreso" element={<TipoGastoCCPage/>}/>
                 <Route path="configuracion/ingreso" element={<TipoIngresoPage/>}/>

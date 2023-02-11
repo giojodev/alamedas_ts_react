@@ -10,3 +10,4 @@ export * from './ProductoIngresoCC';
 export * from './UserApp';
 export * from './Role';
 export *  from './ProductoGasto';
+export *  from './IngresoCC';

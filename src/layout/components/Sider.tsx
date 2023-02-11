@@ -23,8 +23,8 @@ function getItem(
 type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuProps['items'] = [
-    getItem('Inicio', 'home', <HomeOutlined />),
-    getItem('Condominos', 'condominium', <ContactsOutlined />),
+    getItem('Inicio', 'inicio', <HomeOutlined />),
+    getItem('Condominos', 'condominio', <ContactsOutlined />),
     getItem('Ingresos', 'ingresos', <RiseOutlined />),
     getItem('Gastos', 'gastos', <FallOutlined />),
     getItem('Gastos Caja Chica', 'gastoscajachica', <FundViewOutlined />),

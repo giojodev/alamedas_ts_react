@@ -8,7 +8,7 @@ const TipoGastoModal =({showModal,formData,onChange,isEditData,onSave}: PropTipo
 
     return(
         <>
-        <Modal visible={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Tipo Gasto" : "Nuevo Tipo Gasto" } footer={false} centered>
+        <Modal open={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Tipo Gasto" : "Nuevo Tipo Gasto" } footer={false} centered>
             <Form layout='vertical' labelWrap labelCol={{span:12}} initialValues={formData} onFinish={onSave}>
                     <Col>
                         <Form.Item

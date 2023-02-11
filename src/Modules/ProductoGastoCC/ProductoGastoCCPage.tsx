@@ -74,7 +74,7 @@ const  ProductoGastoCCPage = ()=> {
         },
         {
             title:'Acciones',
-            dataIndex:'idIngresoaCajaChica',
+            dataIndex:'Id',
             render:(text: string, row: IModelProductoGastoCC,index:number)=> <Button key={row.Id} icon={<EditOutlined/>} type='ghost' onClick={(w)=>{w.stopPropagation(); editProduct(row)}}/>
         }
     ];
