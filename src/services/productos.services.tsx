@@ -171,6 +171,4 @@ class ProductosService{
     }
 }
 
-
-
 export {ProductosService};

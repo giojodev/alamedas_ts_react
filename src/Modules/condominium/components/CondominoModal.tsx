@@ -9,16 +9,16 @@ const CondominoModal=({showModal,formData,onChange,isEditData,onSave}: PropCondo
     return (
         
         <>
-        <Modal visible={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Condomino" : "Nuevo Condomino"} footer={false} centered>
+        <Modal open={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Condomino" : "Nuevo Condomino"} footer={false} centered>
             <Row justify='center'>
-                <Form layout='vertical' labelWrap labelCol={{span: 12}} initialValues={formData} onFinish={onSave}>
-                    <Row gutter={[16,16]}>
+                <Form layout='vertical' labelWrap  initialValues={formData} onFinish={onSave}>
+                    <Row gutter={[12,12]}>
                         <Col span={spanCol}>
                             <Form.Item 
                                 label="Numero Casa" 
                                 name="idCondomino" 
                                 rules={[{required:true,message:"Ingrese el numero de casa"}]}
-                                
+                                style={{ marginBottom: 0 }}
                             >
                                 <InputNumber 
                                     min={1} disabled={isEditData}
@@ -30,6 +30,7 @@ const CondominoModal=({showModal,formData,onChange,isEditData,onSave}: PropCondo
                                 label="Dueño Casa" 
                                 name="nombreCompleto"
                                 rules={[{required:true,message:"Ingrese el nombre del dueño"}]}
+                                style={{ marginBottom: 0 }}
                             >
                                 <Input/>
                             </Form.Item>
@@ -39,6 +40,7 @@ const CondominoModal=({showModal,formData,onChange,isEditData,onSave}: PropCondo
                                 label="Residente" 
                                 name="nombreInquilino"
                                 rules={[{required:true,message:"Ingrese el nombre del inquilino"}]}
+                                style={{ marginBottom: 0 }}
                             >
                                     <Input/>
                             </Form.Item>
@@ -48,6 +50,7 @@ const CondominoModal=({showModal,formData,onChange,isEditData,onSave}: PropCondo
                                 label="Correo" 
                                 name="correo"
                                 rules={[{required:true,message:"Ingrese el correo"}]}
+                                style={{ marginBottom: 0 }}
                             >
                                 <Input/>
                             </Form.Item>
@@ -57,6 +60,7 @@ const CondominoModal=({showModal,formData,onChange,isEditData,onSave}: PropCondo
                                 label="Telefono" 
                                 name="telefono"
                                 rules={[{required:true,message:"Ingrese un numero de telefono"}]}
+                                style={{ marginBottom: 0 }}
                             >
                                 <Input/>
                             </Form.Item>
@@ -66,6 +70,7 @@ const CondominoModal=({showModal,formData,onChange,isEditData,onSave}: PropCondo
                                 label="Activo" 
                                 name="activo"
                                 rules={[{required:true,message:"Seleccione el estado"}]}
+                                style={{ marginBottom: 0 }}
                             >
                                 <Radio.Group 
                                     buttonStyle='solid'
