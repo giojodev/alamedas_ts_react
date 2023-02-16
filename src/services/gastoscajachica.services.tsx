@@ -4,7 +4,7 @@ import { SessionData } from '../helpers';
 const GetBaseUrl=()=>{return localStorage.getItem('urlAPIALAMEDAS');}
 const urlBase=GetBaseUrl();
 
-class GastoCajaChica {
+class GastoCajaChicaService {
     static async GetListGastosCC(){
         return new Promise((resolve,reject)=>{
             const sessionData= SessionData() as IModelLoginRequest;
@@ -20,4 +20,41 @@ class GastoCajaChica {
             })
         })
     }
+
+    static NewGastoCC = async(model:IModelGastoCC)=>{
+        return new Promise((resolve,reject)=>{
+            const sessionData= SessionData() as IModelLoginRequest;
+            axios.post(urlBase + "Alamedas/Transactions/InsertGCC",model,{
+                headers: {
+                    'Authorization': `Bearer ${sessionData.token}` 
+                    } 
+            })
+            .then(responsePost=>{
+                resolve(responsePost.data);
+            })
+            .catch(error=>{
+                reject(error);
+                console.log("gastoCajaChica.Service.tsx ¬ line 37 ¬ NewGastoCCC ¬ error: ",error);
+            })
+        })
+    }
+    static UpdateGastoCC = async(model:IModelGastoCC)=>{
+        return new Promise((resolve,reject)=>{
+            const sessionData= SessionData() as IModelLoginRequest;
+            axios.post(urlBase + "Alamedas/Transactions/InsertGCC",model,{
+                headers: {
+                    'Authorization': `Bearer ${sessionData.token}` 
+                    } 
+            })
+            .then(responsePost=>{
+                resolve(responsePost.data);
+            })
+            .catch(error=>{
+                reject(error);
+                console.log("gastoCajaChica.Service.tsx ¬ line 37 ¬ UpdateGastoCC ¬ error: ",error);
+            })
+        })
+    }
 }
+
+export {GastoCajaChicaService};
