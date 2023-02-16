@@ -57,6 +57,18 @@ interface IModelGasto {
   anio: int = 2023;
 }
 
+interface IModelGastoCC{
+  Consecutivo:int= 0;
+  IdUsuario: int=1;
+  TipoGastoCchica:int=0;
+  Fecha:Date;
+  Concepto:string="";
+  Total:double=0;
+  Mes:int=0;
+  Anio:int=0;
+  Anulado:boolean=false;
+}
+
 interface IModelTipoIngresoCajaChica {
   idIngresoaCajaChica: int = 0;
   nombreIngresoCajaChica: string = "";
@@ -100,6 +112,13 @@ interface PropTipoGastoCajaChica {
 interface PropProductoGastoCC {
   showModal: boolean;
   formData: IModelProductoGastoCC;
+  onChange: (event: React.MouseEvent) => void;
+  isEditData: boolean;
+  onSave: (form: any) => void;
+}
+interface PropGastoCC {
+  showModal: boolean;
+  formData: IModelGastoCC;
   onChange: (event: React.MouseEvent) => void;
   isEditData: boolean;
   onSave: (form: any) => void;
