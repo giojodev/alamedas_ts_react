@@ -29,4 +29,45 @@ const GastoCCPage = () =>{
         }).finally(()=>{setLoading(false);});
         
     }
+
+    const columns: ColumnsType<IModelGastoCC>=[
+        {
+            title:'Consecutivo',
+            dataIndex: 'Consecutivo'
+        },
+        {
+            title:'Mes',
+            dataIndex:'Mes'
+        },
+        {
+            title:'Año',
+            dataIndex:'Anio'
+        },
+        {
+            title:'Tipo Gasto',
+            dataIndex:'nombreGastoCajachica'
+        },
+        {
+            title:'Concepto',
+            dataIndex:'Concepto'
+        },
+        {
+            title:'Total',
+            dataIndex:'Total'
+        },
+        {
+            title:'Estado',
+            dataIndex:'Anulado',
+            render:(text)=> <Tag color={text==true?"volcano":"green"}>{text==true?String("Anulado"):String("Activo")}</Tag>
+        },
+        {
+            title:'Acciones',
+            dataIndex:'Consecutivo',
+            render:(text: string, row: IModelGastoCC,index:number)=> <Button key={row.Consecutivo} icon={<EditOutlined/>} type='ghost' onClick={(w)=>{}}/>
+        }
+    ];
+
+    useEffect(()=>{
+        fetchListGastoCajaChica();
+    },[]);
 }
