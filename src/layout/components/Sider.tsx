@@ -23,15 +23,15 @@ function getItem(
 type MenuItem = Required<MenuProps>['items'][number];
 
 const items: MenuProps['items'] = [
-    getItem('Inicio', 'home', <HomeOutlined />),
-    getItem('Condominos', 'condominium', <ContactsOutlined />),
+    getItem('Inicio', 'inicio', <HomeOutlined />),
+    getItem('Condominos', 'condominio', <ContactsOutlined />),
     getItem('Ingresos', 'ingresos', <RiseOutlined />),
     getItem('Gastos', 'gastos', <FallOutlined />),
     getItem('Gastos Caja Chica', 'gastoscajachica', <FundViewOutlined />),
     getItem('Ingresos Caja Chica', 'ingresoscajachica', <FundProjectionScreenOutlined />),
     getItem('Reportes', 'reportes', <PieChartOutlined />),
     getItem('Configuración', 'configuracion', <SettingOutlined />, [
-        getItem('Ingreso / Gasto', 'g1', null, [getItem('Tipo Ingreso', 'configuracion/ingreso'), getItem('Tipo Gastos', 'configuracion/gasto'), getItem('Producto Gastos', 'configuracion/producto')], 'group'),
+        getItem('Ingreso / Gasto', 'g1', null, [getItem('Tipo Ingreso', 'configuracion/ingreso'), getItem('Tipo Gastos', 'configuracion/gasto'), getItem('Producto Gastos', 'configuracion/prodgasto')], 'group'),
         getItem('Caja Chica', 'g2', null, [getItem('Tipo Ingreso', 'configuracion/cingreso'), getItem('Tipo Gastos', 'configuracion/gingreso'),getItem('Producto Ingreso', 'configuracion/pingreso'),getItem('Producto Gasto', 'configuracion/pgasto')], 'group'),
         getItem('Seguridad', 'g3', null, [getItem('Usuarios', 'configuracion/usuarioapp'), getItem('Roles', 'configuracion/rol')], 'group'),
     ]),

@@ -8,7 +8,7 @@ const TipoIngresoModal =({showModal,formData,onChange,isEditData,onSave}: PropTi
 
     return(
         <>
-        <Modal visible={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Tipo Ingreso" : "Nuevo Tipo Ingreso" } footer={false} centered>      
+        <Modal open={showModal} destroyOnClose={true} onCancel={onChange} title={isEditData ? "Editar Tipo Ingreso" : "Nuevo Tipo Ingreso" } footer={false} centered>      
                 <Form layout='vertical' labelWrap labelCol={{span:12}} initialValues={formData} onFinish={onSave}>
                      <Col>
                         <Form.Item
