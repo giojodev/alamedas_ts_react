@@ -88,6 +88,7 @@ const GastoCCPage = () =>{
                 
                 </Col>
             </Row>
+            <GastoCCModal/>
         </React.Fragment>
     );
 }
