@@ -70,4 +70,26 @@ const GastoCCPage = () =>{
     useEffect(()=>{
         fetchListGastoCajaChica();
     },[]);
+
+    return(
+        <React.Fragment>
+            <Row gutter={[16,16]} justify="end" align="middle">
+                <Col>
+                <Search type='search' placeholder='Buscar'></Search>    
+                </Col>
+                <Col>
+                <Button type='primary'>Nuevo Gasto</Button>
+                </Col>
+            </Row>
+            <Divider/>
+            <Row justify='center' align='middle'>
+                <Col flex='auto'>
+                <Table scroll={{x:500}} columns={columns} rowKey="CONSECUTIVO" dataSource={lstFilter.length>0?lstFilter:lstGasto} size='small' loading={loading}/>
+                
+                </Col>
+            </Row>
+        </React.Fragment>
+    );
 }
+
+export {GastoCCPage};
