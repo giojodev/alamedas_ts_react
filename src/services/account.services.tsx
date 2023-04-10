@@ -14,7 +14,6 @@ class AccountService{
     static async Authenticate(model:IModelLogin)
     {
         const response:IModelLoginRequest = {} as IModelLoginRequest;
-
         await axios.post(urlBase + "Account/Login",model)
         .then(responsePost=>{
             response.iduser=responsePost.data.iduser;
